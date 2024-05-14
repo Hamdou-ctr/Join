@@ -1,0 +1,108 @@
+body {
+  margin: 0;
+}
+
+/* urgent color    
+    #ff3d00
+    rgba(255,61,0,255)
+*/
+
+/* medium color    
+    #ffa800
+    rgba(255,168,0,255)
+*/
+
+/* low color
+    #7ae229
+    rgba(122,226,41,255)
+ */
+
+main {
+  display: flex;
+  gap: 8px;
+}
+
+aside {
+  /* height: 100vh; */
+  min-height: 100vh;
+  width: 30%;
+  background-color: #2a3647;
+  background-color: rgba(42, 54, 71, 255);
+  box-sizing: border-box;
+}
+
+/* img{
+    
+} */
+
+.app-logo {
+  display: flex;
+  padding: 25%;
+  width: 50%;
+  margin-bottom: 80px;
+}
+
+/* 
+  width: 100.03px;
+  height: 121.97px;
+  top: 64px;
+  left: 240.03px;
+  gap: 0px;
+  opacity: 0px;
+
+  background-color: #091832;
+  rgba(9,24,50,255)
+ */
+
+/* .vorschlage {
+  width: 100%;
+  object-fit: contain;
+  margin-top: 16px;
+} */
+
+.vorschlage:hover {
+  background-color: #2a3e59;
+  transform: scale(1.03);
+}
+
+.check {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100px;
+}
+
+/* standar css */
+
+a {
+  text-decoration: none;
+}
+
+.d_flex_c_c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.d_flex_sb_c {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+
+#hoverDiv {
+  width: 200px;
+  height: 200px;
+  background-color: #ccc;
+  text-align: center;
+  line-height: 200px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#hoverDiv.hovered {
+  background-color: #f00;
+  color: #fff;
+}
