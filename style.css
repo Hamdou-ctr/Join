@@ -1,5 +1,8 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
+}
+body {
 }
 
 /* urgent color    
@@ -19,11 +22,9 @@ body {
 
 main {
   display: flex;
-  gap: 8px;
 }
 
 aside {
-  /* height: 100vh; */
   min-height: 100vh;
   width: 30%;
   background-color: #2a3647;
@@ -31,34 +32,12 @@ aside {
   box-sizing: border-box;
 }
 
-/* img{
-    
-} */
-
 .app-logo {
   display: flex;
   padding: 25%;
   width: 50%;
   margin-bottom: 80px;
 }
-
-/* 
-  width: 100.03px;
-  height: 121.97px;
-  top: 64px;
-  left: 240.03px;
-  gap: 0px;
-  opacity: 0px;
-
-  background-color: #091832;
-  rgba(9,24,50,255)
- */
-
-/* .vorschlage {
-  width: 100%;
-  object-fit: contain;
-  margin-top: 16px;
-} */
 
 .vorschlage:hover {
   background-color: #2a3e59;
@@ -70,8 +49,6 @@ aside {
   flex-wrap: wrap;
   height: 100px;
 }
-
-/* standar css */
 
 a {
   text-decoration: none;
@@ -89,20 +66,67 @@ a {
   align-items: center;
 }
 
+/* css for summary html */
 
+/* css for Board html */
 
-
-#hoverDiv {
-  width: 200px;
-  height: 200px;
-  background-color: #ccc;
-  text-align: center;
-  line-height: 200px;
-  font-size: 24px;
-  cursor: pointer;
+.board-task {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16px;
 }
 
-#hoverDiv.hovered {
-  background-color: #f00;
-  color: #fff;
+.nav-board {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
 }
+
+.nav-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-bar-image {
+  height: 20px;
+}
+
+.board-columns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.column-title {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50%;
+  height: 80px;
+}
+
+.board-lists {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  gap: 26px;
+  min-height: 50vh;
+}
+
+
+
+
+/* css for contacts html */

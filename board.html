@@ -3,18 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Board</title>
+    <link rel="shortcut icon" href="assets/img/Logo for Favicon construction.svg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script src="js/script.js"></script>
+    <script src="js/board.js"></script>
 </head>
-<body>
+<body onload="updateHTML()">
     <main>
-        <aside>
+        <aside id="side-menu">
             <div w3-include-html="assets/templates/side_menu.html"></div>
         </aside>
-
-        <section>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur qui veniam ullam eius, itaque quisquam
-            iusto eligendi velit nesciunt repudiandae illo veritatis soluta ipsa voluptatem! Repudiandae harum minima
-            iure possimus?
+        <section class="board-task" id="board-task">
+            <div class="nav-board d_flex_sb_c" id="nav-board">
+                <h1 id="board-title">Board</h1>
+                <div class="nav-controls" id="nav-controls">
+                    <p class="search-bar" id="search-bar">
+                        <input type="search" placeholder="Find Task" id="search-input">
+                        <img class="search-bar-image" src="assets/img/Vector 3.svg" alt="Search Icon" id="search-icon">
+                        <img class="search-bar-image" src="assets/img/search.svg" alt="Search Icon" id="search-icon">
+                    </p>
+                    <button class="add-task-btn" id="add-task-btn">Add Task +</button>
+                </div>
+            </div>
+            <div class="board-columns" id="board-columns">
+                <div class="column-title to-do" id="to-do-column">
+                    <p id="to-do-title">To do</p>
+                    <img src="assets/img/plus button.svg" alt="Add Icon" id="to-do-icon">
+                </div>
+                <div class="column-title in-progress" id="in-progress-column">
+                    <p id="in-progress-title">In Progress</p>
+                    <img src="assets/img/plus button.svg" alt="Add Icon" id="in-progress-icon">
+                </div>
+                <div class="column-title awaiting-feedback" id="awaiting-feedback-column">
+                    <p id="awaiting-feedback-title">Awaiting Feedback</p>
+                    <img src="assets/img/plus button.svg" alt="Add Icon" id="awaiting-feedback-icon">
+                </div>
+                <div class="column-title board-column done" id="done-column">
+                    <p id="done-title">Done</p>
+                </div>
+            </div>
+            <div class="board-lists" id="task-lists">
+                <div class="board-list to-do-list" id="todo" ondrop="drop(event, 'todo')" ondragover="allowDrop(event)">
+                    <h3 id="to-do-list-title">Todo</h3>
+                </div>
+                <div class="board-list in-progress-list" id="progress" ondrop="drop(event, 'progress')" ondragover="allowDrop(event)">
+                    <h3 id="in-progress-list-title">In Progress</h3>
+                </div>
+                <div class="board-list awaiting-feedback-list" id="awaiting-feedback" ondrop="drop(event, 'awaitingFeedback')" ondragover="allowDrop(event)">
+                    <h3 id="awaiting-feedback-list-title">Awaiting Feedback</h3>
+                </div>
+                <div class="board-list done-list" id="done" ondrop="drop(event, 'done')" ondragover="allowDrop(event)">
+                    <h3 id="done-list-title">Done</h3>
+                </div>
+            </div>
         </section>
     </main>
 </body>
