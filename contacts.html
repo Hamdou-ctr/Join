@@ -2,23 +2,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
-    <script src="js/checkSession.js"></script>
+    <script src="js/checkSession.js"></script>s
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/contacts.css">
     <script src="script.js" defer=""></script>
     <script src="./js/contacts.js"></script>
     <script src="js/checkSession.js"></script>
-    <script src="js/add-task.js"></script>
-    <script src="js/board.js"></script>
     <script src="js/contacts.js"></script>
     <script src="script.js"></script>
     <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
 
 <body onload="contacts()">
     <main id="main-content">
-        <aside>
-            <div w3-include-html="assets/templates/side_menu.html"></div>
-        </aside>
+        <div class="sidebar">
+            <img class="app-logo" src="assets/img/Capa 1.svg" alt="App Logo">
+        
+            <div class="sidebar-menu"
+                style="display: flex; flex-direction: column; gap: 16px; padding: 1.5%; box-sizing: border-box;">
+                <a href="" class="menu-item">
+                    <img class="menu-icon" src="assets/img/Vector.svg" alt="Summary Icon">
+                    <h3 class="menu-title">Summary</h3>
+                </a>
+                <a href="add-task.html" class="menu-item">
+                    <img class="menu-icon" src="assets/img/edit_square.svg" alt="Add Task Icon">
+                    <h3 class="menu-title">Add Task</h3>
+                </a>
+        
+                <a class="menu-item" href="board.html">
+                    <img class="menu-icon" src="assets/img/Vector-2.svg" alt="Board Icon">
+                    <h3 class="menu-title">Board</h3>
+                </a>
+                <a href="contacts.html" class="menu-item">
+                    <img class="menu-icon" src="assets/img/perm_contact_calendar.svg" alt="Contacts Icon">
+                    <h3 class="menu-title">Contacts</h3>
+                </a>
+            </div>
+        </div>
 
 
         <section>
