@@ -1,0 +1,28 @@
+.header-menu {
+    padding: 32px;
+    background-color: white;
+    width: 85vw;
+}
+
+#add-contact {
+    margin: 30px;
+}
+
+.contact-section {
+    background-color: white;
+    width: 45%;
+    max-height: 90vH;
+    overflow: scroll;
+}
+
+div#contacts div {
+    margin: 50px;
+    display: flex;
+    align-items: center;
+}
+
+div#contacts div img {
+    width: 120px;
+    height: 120px;
+    margin-right: 20px;
+}

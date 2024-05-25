@@ -1,23 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>contacts</title>
+    <title>Contacts</title>
+    <script src="js/checkSession.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/contacts.css">
+    <script src="script.js" defer=""></script>
+    <script src="./js/contacts.js"></script>
+    <script src="js/checkSession.js"></script>
+    <script src="js/add-task.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/contacts.js"></script>
+    <script src="script.js"></script>
+    <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
 
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <main>
+<body onload="contacts()">
+    <main id="main-content">
         <aside>
             <div w3-include-html="assets/templates/side_menu.html"></div>
         </aside>
 
+
         <section>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur qui veniam ullam eius, itaque quisquam
-            iusto eligendi velit nesciunt repudiandae illo veritatis soluta ipsa voluptatem! Repudiandae harum minima
-            iure possimus?
+            <div class="header-menu">Kanban Project Management Tool</div>
+            <div class="contact-section">
+                <div class="add-contact">
+                    <button id="add-contact" class="btn-primary">Add new contact</button>
+                </div>
+                <div id="contacts">
+                </div>
         </section>
     </main>
-</body>
-</html>
+
+
+<div id="loom-companion-mv3" ext-id="liecbddmkiiihnedobmlmillhodjkdmb"><section id="shadow-host-companion"></section></div></body></html>
