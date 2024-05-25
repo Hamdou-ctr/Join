@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board</title>
     <link rel="shortcut icon" href="assets/img/Logo for Favicon construction.svg" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <script src="js/script.js"></script>
-    <script src="js/board.js"></script>
+    <link rel="stylesheet" href="css/board.css">
+
+    <script src="script.js" defer></script>
+
+    <script src="js/board.js" defer></script>
 </head>
-<body onload="updateHTML()">
+
+<body onload="initBoard()" style="background-color: rgb(58, 66, 63);">
     <main>
         <aside id="side-menu">
             <div w3-include-html="assets/templates/side_menu.html"></div>
@@ -23,7 +28,9 @@
                         <img class="search-bar-image" src="assets/img/Vector 3.svg" alt="Search Icon" id="search-icon">
                         <img class="search-bar-image" src="assets/img/search.svg" alt="Search Icon" id="search-icon">
                     </p>
-                    <button class="add-task-btn" id="add-task-btn">Add Task +</button>
+                    <a href="add-task.html">
+                        <button class="add-task-btn" id="add-task-btn">Add Task +</button>
+                    </a>
                 </div>
             </div>
             <div class="board-columns" id="board-columns">
@@ -44,20 +51,31 @@
                 </div>
             </div>
             <div class="board-lists" id="task-lists">
-                <div class="board-list to-do-list" id="todo" ondrop="drop(event, 'todo')" ondragover="allowDrop(event)">
+                <div class="board-list to-do-list" id="todo" ondrop="moveTo(event, 'todo')"
+                    ondragover="allowDrop(event)">
                     <h3 id="to-do-list-title">Todo</h3>
                 </div>
-                <div class="board-list in-progress-list" id="progress" ondrop="drop(event, 'progress')" ondragover="allowDrop(event)">
+                <div class="board-list in-progress-list" id="inProgress" ondrop="moveTo(event, 'inProgress')"
+                    ondragover="allowDrop(event)">
                     <h3 id="in-progress-list-title">In Progress</h3>
                 </div>
-                <div class="board-list awaiting-feedback-list" id="awaiting-feedback" ondrop="drop(event, 'awaitingFeedback')" ondragover="allowDrop(event)">
+                <div class="board-list awaiting-feedback-list" id="awaitFeedback"
+                    ondrop="moveTo(event, 'awaitFeedback')" ondragover="allowDrop(event)">
                     <h3 id="awaiting-feedback-list-title">Awaiting Feedback</h3>
                 </div>
-                <div class="board-list done-list" id="done" ondrop="drop(event, 'done')" ondragover="allowDrop(event)">
+                <div class="board-list done-list" id="done" ondrop="moveTo(event, 'done')"
+                    ondragover="allowDrop(event)">
                     <h3 id="done-list-title">Done</h3>
                 </div>
+                <div id="detailed-information"></div>
             </div>
         </section>
     </main>
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            init();
+        });
+    </script> -->
 </body>
+
 </html>

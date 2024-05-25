@@ -32,12 +32,11 @@ aside {
   box-sizing: border-box;
 }
 
-.app-logo {
+ .app-logo {
   display: flex;
   padding: 25%;
-  width: 50%;
-  margin-bottom: 80px;
-}
+   margin-bottom: 80px; 
+} 
 
 .vorschlage:hover {
   background-color: #2a3e59;
@@ -66,67 +65,13 @@ a {
   align-items: center;
 }
 
-/* css for summary html */
-
-/* css for Board html */
-
-.board-task {
+.menu-item{
   display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 16px;
+  gap: 32px;
+  color: white;
 }
 
-.nav-board {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px;
+/* Füge die Hervorhebung hinzu */
+.smallcard.highlight {
+  background-color: lightblue;
 }
-
-.nav-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-}
-
-.search-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-}
-
-.search-bar-image {
-  height: 20px;
-}
-
-.board-columns {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-}
-
-.column-title {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  gap: 50%;
-  height: 80px;
-}
-
-.board-lists {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 16px;
-  gap: 26px;
-  min-height: 50vh;
-}
-
-
-
-
-/* css for contacts html */

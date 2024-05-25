@@ -1,0 +1,228 @@
+/* Hintergrundfarbe für den gesamten Body */
+body {
+  background-color: rgb(58, 66, 63);
+}
+
+.main-container {}
+
+/* Sidebar Menü */
+#side-menu {}
+
+/* Hauptbereich für Aufgaben auf dem Board */
+.board-task {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16px;
+}
+
+/* Navigationsleiste des Boards */
+.nav-board {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+}
+
+/* Flexbox-Klasse für horizontale Verteilung */
+.d_flex_sb_c {}
+
+/* ID der Navigationsleiste des Boards */
+#nav-board {}
+
+/* Titel des Boards */
+#board-title {}
+
+/* Steuerungselemente in der Navigation */
+.nav-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Wiederholte Steuerungselemente-ID */
+#nav-controls {}
+
+/* Suchleiste */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Wiederholte Suchleiste-ID */
+#search-bar {}
+
+/* Bilder in der Suchleiste */
+.search-bar-image {
+  height: 20px;
+}
+
+/* Eingabefeld für die Suche */
+#search-input {}
+
+/* Suchsymbol in der Suchleiste */
+#search-icon {}
+
+/* Button zum Hinzufügen einer Aufgabe */
+.add-task-btn {}
+
+/* Wiederholte Button-ID zum Hinzufügen einer Aufgabe */
+#add-task-btn {}
+
+/* Container für die Board-Spalten */
+.board-columns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8%;
+}
+
+/* Wiederholte Container-ID für die Board-Spalten */
+#board-columns {}
+
+/* Titel der Spalten */
+.column-title {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50%;
+  height: 80px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Klasse für die "To Do"-Spalte */
+.to-do {}
+
+/* ID der "To Do"-Spalte */
+#to-do-column {}
+
+/* Titel der "To Do"-Spalte */
+#to-do-title {}
+
+/* Symbol zum Hinzufügen in der "To Do"-Spalte */
+#to-do-icon {}
+
+/* Klasse für die "In Progress"-Spalte */
+.in-progress {}
+
+/* ID der "In Progress"-Spalte */
+#in-progress-column {}
+
+/* Titel der "In Progress"-Spalte */
+#in-progress-title {}
+
+/* Symbol zum Hinzufügen in der "In Progress"-Spalte */
+#in-progress-icon {}
+
+/* Klasse für die "Awaiting Feedback"-Spalte */
+.awaiting-feedback {}
+
+/* ID der "Awaiting Feedback"-Spalte */
+#awaiting-feedback-column {}
+
+/* Titel der "Awaiting Feedback"-Spalte */
+#awaiting-feedback-title {}
+
+/* Symbol zum Hinzufügen in der "Awaiting Feedback"-Spalte */
+#awaiting-feedback-icon {}
+
+/* Klasse für die "Done"-Spalte */
+.board-column {}
+
+/* Klasse für die "Done"-Spalte */
+.done {}
+
+/* ID der "Done"-Spalte */
+#done-column {}
+
+/* Titel der "Done"-Spalte */
+#done-title {}
+
+/* Container für die Board-Listen */
+.board-lists {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  gap: 26px;
+  min-height: 50vh;
+}
+
+/* Wiederholte Container-ID für die Board-Listen */
+#task-lists {}
+
+/* Klasse für die Listen im Board */
+.board-list {
+  border: 1px solid #ccc;
+  padding: 10px;
+  min-height: 60vh;
+  width: 25%;
+}
+
+/* Klasse für die "To Do"-Liste */
+.to-do-list {}
+
+/* ID der "To Do"-Liste */
+#todo {}
+
+/* Titel der "To Do"-Liste */
+#to-do-list-title {}
+
+/* Klasse für die "In Progress"-Liste */
+.in-progress-list {}
+
+/* ID der "In Progress"-Liste */
+#inProgress {}
+
+/* Titel der "In Progress"-Liste */
+#in-progress-list-title {}
+
+/* Klasse für die "Awaiting Feedback"-Liste */
+.awaiting-feedback-list {}
+
+/* ID der "Awaiting Feedback"-Liste */
+#awaitFeedback {}
+
+/* Titel der "Awaiting Feedback"-Liste */
+#awaiting-feedback-list-title {}
+
+/* Klasse für die "Done"-Liste */
+.done-list {}
+
+/* ID der "Done"-Liste */
+#done {}
+
+/* Titel der "Done"-Liste */
+#done-list-title {}
+
+/* Bereich für detaillierte Informationen */
+#detailed-information {
+  background-color: aqua;
+  position: absolute;
+  display: flex;
+  width: 600px;
+  margin-left: 10%;
+}
+
+.renderCardHTML{
+  background-color: white;
+}
+
+
+
+.drag-area {
+  height: 200px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px dashed black;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.drag-area-highlight {
+  background-color: rgba(0, 0, 0, 0.2);
+}

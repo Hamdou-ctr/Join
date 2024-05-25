@@ -1,21 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add Task</title>
+    <link rel="shortcut icon" href="assets/img/Logo for Favicon construction.svg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/add-task.css">
+
+    <script src="js/add-task.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
-<body>
-    <main>
-        <aside>
+
+<body onload="initial()">
+    <main class="main-container">
+        <aside class="sidebar">
             <div w3-include-html="assets/templates/side_menu.html"></div>
         </aside>
+        <section class="task-section">
+            <h1 class="section-title">Add Task</h1>
+            <div class="form-container">
+                <form action="">
+                    <h4 class="form-title">Title <b>*</b></h4>
+                    <input class="text-input input-title" id="input-title" type="text" required>
+                    <h4 class="form-title">Description</h4>
+                    <textarea class="textarea-input input-description" cols="" rows="" placeholder="Enter a Description"
+                        id="input-description" required></textarea>
+                    <p class="assigned-to-title">Assigned To</p>
+                    <select class="text-input assigned-to-input" id="assigned-to-select" multiple>
+                        <option>User 1</option>
+                        <option>User 2</option>
+                        <option>User 3</option>
+                        <option>User 4</option>
+                    </select>
 
-        <section>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur qui veniam ullam eius, itaque quisquam
-            iusto eligendi velit nesciunt repudiandae illo veritatis soluta ipsa voluptatem! Repudiandae harum minima
-            iure possimus?
+
+
+                </form>
+                <div class="additional-fields">
+                    <div class="due-date-container">
+                        <p class="due-date-title">Due date <b>*</b></p>
+                        <input class="due-date-input" type="date" id="due-date-input" required>
+                    </div>
+                    <div class="priority-container">
+                        <p class="priority-title">Priority</p>
+                        <div class="priority-icons">
+                            <div class="priority-div">Urgent
+                                <img class="priority-icon" src="assets/img/Property 1=Urgent.svg" alt="Urgent"
+                                    id="priority-urgent">
+                            </div>
+                            <div class="priority-div">
+                                Medium
+                                <img class="priority-icon" src="assets/img/Property 1=Medium.svg" alt="Medium"
+                                    id="priority-medium">
+                            </div>
+                            <div class="priority-div">Low
+                                <img class="priority-icon" src="assets/img/Property 1=Low.svg" alt="Low"
+                                    id="priority-low">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="category-container">
+                        <p class="category-title">Category <b>*</b></p>
+                        <select class="category-select" id="category-select" required>
+                            <option>Technical task</option>
+                            <option>User Story</option>
+                            <option>Development</option>
+                            <option>Editing</option>
+                        </select>
+                    </div>
+                    <div class="subtasks-container">
+                        <p class="subtasks-title">Subtasks</p>
+                        <input class="text-input subtasks-input" type="text" placeholder="Add new subtask"
+                            id="subtasks-input">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-note">
+                <p><b>*</b> This field is required</p>
+                <div class="footer-buttons">
+                    <button class="clear-button" type="button" onclick="clearForm()">Clear X</button>
+                    <button class="create-button" type="button" onclick="addTask()">Create Task √</button>
+                </div>
+            </div>
+
+            <div id="content"></div>
         </section>
     </main>
 </body>
+
 </html>

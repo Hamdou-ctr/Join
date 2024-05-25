@@ -1,0 +1,123 @@
+.main-container {
+}
+
+.sidebar {
+}
+
+.task-section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 100px;
+  gap: 50px;
+}
+
+.section-title {
+}
+
+.form-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+
+  gap: 50px;
+}
+
+.form-title {
+}
+
+.input-title {
+}
+
+.text-input {
+}
+
+.input-description {
+}
+
+.textarea-input {
+}
+
+.assigned-to-title {
+}
+
+.assigned-to-input {
+}
+
+.additional-fields {
+}
+
+.due-date-container {
+}
+
+.due-date-title {
+}
+
+.due-date-input {
+}
+
+.priority-container {
+}
+
+.priority-title {
+}
+
+.priority-icons {
+  display: flex;
+  gap: 16px;
+}
+
+.priority-icon {
+}
+
+.priority-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  border-radius: 8px;
+  border: solid 1px rgb(237, 232, 232);
+  margin-bottom: 16px;
+}
+
+.priority-div:hover {
+  box-shadow: 0px 7px 4px -4px rgba(9, 9, 9, 0.31);
+  border: solid 0;
+}
+
+.category-container {
+}
+
+.category-title {
+}
+
+.category-select {
+}
+
+.subtasks-container {
+}
+
+.subtasks-title {
+}
+
+.subtasks-input {
+}
+
+.footer-note {
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-buttons {
+}
+b {
+  color: red;
+}
+.clear-button {
+}
+
+.create-button {
+  color: white;
+  background-color: #2a3647;
+}
