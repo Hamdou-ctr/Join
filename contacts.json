@@ -1,0 +1,49 @@
+{
+    "contact": {
+        "kontakt1": {
+            "mail": "juergen.burbrich@gmail.com",
+            "name": "Jürgen Burbrich",
+            "telefonnummer": "41766101800"
+        },
+        "kontakt2": {
+            "mail": "mail@gregorkrebs.de",
+            "name": "Gregor Krebs",
+            "telefonnummer": "491709049821"
+        },
+        "kontakt3": {
+            "mail": "hamidou-diallo@gmx.de",
+            "name": "Hamidou Diallo",
+            "telefonnummer": "4915756163342"
+        },
+        "kontakt4": {
+            "mail": "juergen.burbrich@gmail.com",
+            "name": "Jürgen Burbrich",
+            "telefonnummer": "41766101800"
+        },
+        "kontakt5": {
+            "mail": "mail@gregorkrebs.de",
+            "name": "Gregor Krebs",
+            "telefonnummer": "491709049821"
+        },
+        "kontakt6": {
+            "mail": "hamidou-diallo@gmx.de",
+            "name": "Hamidou Diallo",
+            "telefonnummer": "4915756163342"
+        },
+        "kontakt7": {
+            "mail": "juergen.burbrich@gmail.com",
+            "name": "Jürgen Burbrich",
+            "telefonnummer": "41766101800"
+        },
+        "kontakt8": {
+            "mail": "mail@gregorkrebs.de",
+            "name": "Gregor Krebs",
+            "telefonnummer": "491709049821"
+        },
+        "kontakt9": {
+            "mail": "hamidou-diallo@gmx.de",
+            "name": "Hamidou Diallo",
+            "telefonnummer": "4915756163342"
+        }
+    }
+}

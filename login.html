@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/mobile.css">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
+</head>
+
+<body>
+    <div class="container">
+        <img src="./assets/img/logo.png" alt="Join Logo" class="logo">
+        <div id="loginForm" class="main centered-div">
+            <h1>Log in</h1>
+            <hr>
+            <form id="loginForm">
+                <!-- <label for="username">Username:</label> -->
+                <input type="text" id="username" name="username" placeholder="E-Mail" required>
+                <br>
+                <!-- <label for="password">Password:</label> -->
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <br>
+                <div class="remeber-login">
+                    <input type="radio" id="remeber-login">
+                    <label for="remeber-login">Remember me</label>
+                </div>
+                <div id="login-btn">
+                    <button class="btn-primary" type="submit">Login</button>
+                    <button class="btn-secondary">Guest Log in</button>
+                </div>
+            </form>
+            <div id="result"></div>
+        </div>
+        <script src="js/login.js"></script>
+    </div>
+</body>
+
+</html>

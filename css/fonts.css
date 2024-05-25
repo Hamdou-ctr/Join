@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('./assets/fonts/inter/Inter-Regular.ttf');
+}
+
+html, body, h1, h2, h3, h4, h5, p, span {
+    font-family: 'Inter', sans-serif;
+}
