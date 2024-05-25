@@ -1,15 +1,15 @@
+/* const BASE_URL =
+  "https://join-210-default-rtdb.europe-west1.firebasedatabase.app/";
+ */
 let allTasks = [];
 
 function initial() {
-  // Abrufen aller Prioritätsbilder
   let priorityIcons = document.querySelectorAll(".priority-icon");
 
-  // Eventlistener für Klick auf Prioritätsbilder hinzufügen
   for (let icon of priorityIcons) {
     icon.addEventListener("click", function () {
-      // Auswahl für alle Bilder entfernen
       priorityIcons.forEach((icon) => icon.classList.remove("selected"));
-      // Auswahl für das geklickte Bild hinzufügen
+
       this.classList.add("selected");
     });
   }
@@ -17,6 +17,26 @@ function initial() {
 
   loadAllTasks();
   show();
+  loadFireBaseUrl();
+
+  //postData("/tasks", { Hamidou: "Diallo" });
+}
+
+async function loadFireBaseUrl(path = "") {
+  let respose = await fetch(BASE_URL + path + ".json");
+  let resposeToJson = await respose.json();
+  console.log(resposeToJson);
+}
+
+async function postData(path = "", data = {}) {
+  let respose = await fetch(BASE_URL + ".json", {
+    method: "post",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  let resposeToJson = await respose.json();
 }
 
 function addTask() {
@@ -49,14 +69,13 @@ function addTask() {
     priority: selectedPriority,
     createdAt: new Date().getTime(),
   };
- 
+
   allTasks.push(task);
 
   let allTasksAsString = JSON.stringify(allTasks);
   localStorage.setItem("allTasks", allTasksAsString);
 
-  console.log("allTasks", allTasks);
-  
+  //console.log("allTasks", allTasks);
 
   show();
 }
@@ -64,9 +83,25 @@ function addTask() {
 function show() {
   let content = document.getElementById("content");
   content.innerHTML = "";
+  for (let task of allTasks) {
+    content.innerHTML += contentHtml(task);
+  }
+}
+
+/* function show() {
+  let content = document.getElementById("content");
+  content.innerHTML = "";
   for (let i = 0; i < allTasks.length; i++) {
     content.innerHTML += contentHtml(allTasks[i]);
   }
+} */
+
+function loadAllTasks() {
+  let allTasksAsString = localStorage.getItem("allTasks");
+  if (allTasksAsString) {
+    allTasks = JSON.parse(allTasksAsString);
+  }
+  //console.log("loaded all Tasks", allTasks);
 }
 
 function clearForm() {
@@ -75,6 +110,7 @@ function clearForm() {
   document.getElementById("assigned-to-select").value = "";
   document.getElementById("category-select").value = "";
   document.getElementById("due-date-input").value = "";
+  document.getElementById("subtasks-input").value = "";
 }
 
 function contentHtml(task) {
@@ -118,12 +154,4 @@ function createdAtHtml(task) {
       <p>${hours}:${minutes}:${seconds}</p>
     </div>
   `;
-}
-
-function loadAllTasks() {
-  let allTasksAsString = localStorage.getItem("allTasks");
-  if (allTasksAsString) {
-    allTasks = JSON.parse(allTasksAsString);
-  }
-  console.log("loaded all Tasks", allTasks);
 }
