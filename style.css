@@ -75,3 +75,21 @@ a {
 .smallcard.highlight {
   background-color: lightblue;
 }
+
+button {
+  padding: 12px;
+}
+
+
+.btn-secondary {
+  background-color: #f6f7f8;
+  color: #2a3647;
+  border-radius: 8px;
+}
+
+.btn-primary {
+  background-color: #2a3647;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 8px;
+}
