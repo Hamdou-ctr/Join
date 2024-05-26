@@ -1,3 +1,7 @@
+.main-container{
+  display: flex;
+}
+
 .task-section {
   display: flex;
   width: 100%;
@@ -89,9 +93,7 @@
   background: #ffffff;
   border: 1px solid #d1d1d1;
 }
-.alpha{
-  display: flex;
-}
+
 .input-description {
   width: 440px;
   height: 136px;
