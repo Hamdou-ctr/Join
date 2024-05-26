@@ -2,10 +2,7 @@
   box-sizing: border-box;
   margin: 0;
 }
-html, body {
-  height: 100vh;
-  margin: 0;
-  background-color: #F6F7F8;
+body {
 }
 
 /* urgent color    
@@ -27,27 +24,15 @@ main {
   display: flex;
 }
 
-.main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100vw;
-}
-
 aside {
   min-height: 100vh;
-  width: 20%;
+  width: 30%;
+  background-color: #2a3647;
   background-color: rgba(42, 54, 71, 255);
   box-sizing: border-box;
 }
 
-.sidebar {
-  padding: 50px;
-  background-color: #2a3647;
-}
-
-.app-logo {
+ .app-logo {
   display: flex;
   padding: 25%;
    margin-bottom: 80px; 
@@ -91,22 +76,15 @@ a {
   background-color: lightblue;
 }
 
-.centered-div {
-  background-color: white;
-  padding: 20px;
-  border: 1px solid #000;
+button {
+  padding: 12px;
 }
 
-button {
-  padding: 8px;
-  font-size: 21px;
-}
 
 .btn-secondary {
   background-color: #f6f7f8;
   color: #2a3647;
   border-radius: 8px;
-  font-weight: bold;
 }
 
 .btn-primary {
@@ -114,16 +92,4 @@ button {
   color: #ffffff;
   font-weight: bold;
   border-radius: 8px;
-}
-
-input {
-  border-radius: 8px;
-  padding: 8px;
-  border-width: thin;
-  background-color: white !important;
-  height: 48px;
-  border-style: solid;
-  border-color: #e2e2e5;
-  padding: 20px;
-  color: #898989 !important;
 }

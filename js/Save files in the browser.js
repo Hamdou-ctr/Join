@@ -1,3 +1,5 @@
+let BASE_URL = "https://join-210-default-rtdb.europe-west1.firebasedatabase.app/";
+
 let allTasks = [];
 
 function loadAllTasks() {
