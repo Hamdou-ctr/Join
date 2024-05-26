@@ -13,12 +13,14 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
             body: JSON.stringify({ username, password }),
         });
         const data = await response.json();
-        document.getElementById('result').textContent = data.status;
+        // document.getElementById('result').textContent = data.status;
         if (data.status === '200') {
-            alert("Login erfolgreich!");
+            console.log("login successful");
+            document.getElementById("result").innerHTML = "login successful";
             window.location.href = 'index.html'; // Weiterleiten auf index.html
         } else if (data.status === '403') {
-            alert("Username oder Passwort falsch!");
+            alert("Username or password incorrect.");
+            document.getElementById('result').textContent = "Username or password incorrect. Please try again.";
         }
     } catch (error) {
         console.error('Fehler beim Login:', error);
