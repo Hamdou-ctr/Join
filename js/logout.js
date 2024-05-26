@@ -1,8 +1,17 @@
 async function logout() {
+    const csrfResponse = await fetch('https://auth.gregorkrebs.de/api/form', {
+        credentials: 'include'
+    });
+    const csrfData = await csrfResponse.json();
+    const csrfToken = csrfData.csrfToken;
+
     try {
         const response = await fetch('https://auth.gregorkrebs.de/api/logout', {
             method: 'POST',
-            credentials: 'include', // Einschließen von Cookies im Request
+            headers: {
+                'CSRF-Token': csrfToken
+            },
+            credentials: 'include',
         });
         const data = await response.json();
         if (data.status === '200') {
@@ -10,7 +19,7 @@ async function logout() {
             // document.getElementById("result").innerHTML = "logout successful";
             window.location.href = 'login.html';
         } else {
-            console.error("Logout failed.");
+            alert("Logout failed.");
             // document.getElementById('result').textContent = "Logout failed. Please try again.";
         }
     } catch (error) {
@@ -18,5 +27,4 @@ async function logout() {
     }
 }
 
-// Event Listener für Logout-Button hinzufügen
 document.getElementById('logoutButton').addEventListener('click', logout);

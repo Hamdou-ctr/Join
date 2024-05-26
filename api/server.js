@@ -8,6 +8,9 @@ const cookieParser = require('cookie-parser');
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
+const sanitizeHtml = require('sanitize-html');
+const csurf = require('csurf');
+const helmet = require('helmet');
 
 const serviceAccount = require('./join-210-firebase-adminsdk-1ijlc-c9669a144d.json');
 
@@ -31,12 +34,30 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
+        domain: '.gregorkrebs.de', // Cookie für alle Subdomains verfügbar machen
         secure: true, // Setzen Sie dies auf true in Produktion
         httpOnly: true,
         maxAge: 7200000, // Sitzungsdauer in Millisekunden
-        sameSite: 'lax' // 'lax' für lokale Entwicklung, 'none' für Produktion
+        sameSite: 'none' // Erlaubt Cross-Site-Cookies
     }
 }));
+
+// Sicherheits-Header mit Helmet hinzufügen
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'"],
+        connectSrc: ["'self'"],
+        fontSrc: ["'self'"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
+    },
+}));
+
+const csrfProtection = csurf({ cookie: true });
+app.use(csrfProtection);
 
 const fireBaseURL = 'https://join-210-default-rtdb.europe-west1.firebasedatabase.app/accounts/';
 
@@ -54,6 +75,14 @@ function sha512(password, salt) {
 // Funktion zur Erstellung eines Salts
 function genRandomString(length) {
     return crypto.randomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
+}
+
+// Eingabebereinigung
+function sanitizeInput(input) {
+    return sanitizeHtml(input, {
+        allowedTags: [],
+        allowedAttributes: {}
+    });
 }
 
 // Middleware zur Authentifizierung mit Firebase ID Token
@@ -98,8 +127,13 @@ async function login(username, password) {
     }
 }
 
-app.post('/api/login', async (req, res) => {
-    const { username, password } = req.body;
+app.get('/api/form', csrfProtection, (req, res) => {
+    res.json({ csrfToken: req.csrfToken() });
+});
+
+app.post('/api/login', csrfProtection, async (req, res) => {
+    const username = sanitizeInput(req.body.username);
+    const password = sanitizeInput(req.body.password);
 
     const isValidUser = await login(username, password);
 
@@ -113,7 +147,7 @@ app.post('/api/login', async (req, res) => {
 });
 
 // Endpunkt zur Überprüfung des Anmeldestatus
-app.get('/api/status', (req, res) => {
+app.get('/api/status', csrfProtection, (req, res) => {
     console.log('Session check:', req.session); // Debugging: Anzeigen der aktuellen Sitzung
     if (req.session.username) {
         res.json({ loggedIn: true, username: req.session.username });
@@ -122,7 +156,7 @@ app.get('/api/status', (req, res) => {
     }
 });
 
-app.post('/api/logout', (req, res) => {
+app.post('/api/logout', csrfProtection, (req, res) => {
     req.session.destroy((err) => {
         if (err) {
             return res.status(500).json({ status: '500', message: 'Logout failed' });
