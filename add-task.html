@@ -34,6 +34,17 @@
                         <option>User 3</option>
                         <option>User 4</option>
                     </select>
+
+
+                    <p-floatLabel>
+                        <p-multiSelect 
+                            inputId="float-label" 
+                            [options]="cities" 
+                            [(ngModel)]="selectedCities" 
+                            optionLabel="name" />
+                        <label for="float-label">MultiSelect</label>
+                    </p-floatLabel>
+
                 </form>
                 <div class="additional-fields">
                     <div class="due-date-container">
@@ -77,8 +88,8 @@
             <div class="footer-note">
                 <p><b>*</b> This field is required</p>
                 <div class="footer-buttons">
-                    <button class="btn-secondary clear-button" type="button" onclick="clearForm()">Clear X</button>
-                    <button class="btn-primary create-button" type="button" onclick="addTask()">Create Task ✓</button>
+                    <button class="clear-button" type="button" onclick="clearForm()">Clear X</button>
+                    <button class="create-button" type="button" onclick="addTask()">Create Task √</button>
                 </div>
             </div>
 
