@@ -26,3 +26,17 @@ div#contacts div img {
     height: 120px;
     margin-right: 20px;
 }
+
+div#contacts div div {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+div#contacts div div p:first-child {
+    font-size: 20px;
+}
+
+div#contacts div div:nth-child(2) {
+    font-size: 16px;
+}

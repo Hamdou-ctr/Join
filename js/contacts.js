@@ -11,9 +11,11 @@ async function contacts() {
             let contactInfo = `
                 <div>
                     <img src="./assets/img/default_profil_pic.png" alt="Profile picture">
-                    <p>Name: ${contact.name}</p>
-                    <p>Email: ${contact.mail}</p>
-                    <p>Telefonnummer: ${contact.telefonnummer}</p>
+                    <div>
+                        <p>${contact.name}</p><br>
+                        <a href="mailto:${contact.mail}">${contact.mail}</a><br>
+                        <!-- <p>${contact.telefonnummer}</p> -->
+                    </div>
                 </div>
             `;
             contactsDiv.innerHTML += contactInfo;
