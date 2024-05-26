@@ -1,6 +1,6 @@
 async function checkLoginStatus() {
     try {
-        const response = await fetch('https://auth.armhosting.de/api/status', {
+        const response = await fetch('https://auth.gregorkrebs.de/api/status', {
             credentials: 'include' // Cookies werden eingeschlossen
         });
 

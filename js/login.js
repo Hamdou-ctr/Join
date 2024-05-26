@@ -4,7 +4,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
     const password = document.getElementById('password').value;
 
     try {
-        const response = await fetch('https://auth.armhosting.de/api/login', {
+        const response = await fetch('https://auth.gregorkrebs.de/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
 
 async function checkLoginStatus() {
     try {
-        const response = await fetch('https://auth.armhosting.de/api/status', {
+        const response = await fetch('https://auth.gregorkrebs.de/api/status', {
             credentials: 'include' // Einschließen von Cookies im Request
         });
         const data = await response.json();
