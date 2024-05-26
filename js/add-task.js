@@ -78,6 +78,7 @@ function addTask() {
   //console.log("allTasks", allTasks);
 
   show();
+  clearForm();
 }
 
 function show() {
