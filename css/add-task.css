@@ -1,9 +1,3 @@
-.main-container {
-}
-
-.sidebar {
-}
-
 .task-section {
   display: flex;
   width: 100%;
@@ -114,6 +108,11 @@
 }
 
 .textarea-input {
+  width: 440px;
+  height: 80px;
+  top: 296px;
+  gap: 8px;
+  opacity: 0px;
 }
 
 .form-group-assigned {
@@ -148,6 +147,12 @@
   border: 1px solid #d1d1d1;
 }
 
+.additional-fields-image{
+  width: 440px;
+  height: 376px;
+  top: 327px;
+}
+
 .additional-fields {
   width: 440px;
   height: 376px;
@@ -157,14 +162,7 @@
   opacity: 0px;
 }
 
-.due-date-container {
-}
 
-.due-date-title {
-}
-
-.due-date-input {
-}
 
 .priority-container {
   width: 440px;
@@ -173,16 +171,14 @@
   gap: 8px;
 }
 
-.priority-title {
-}
+
 
 .priority-icons {
   display: flex;
   gap: 16px;
 }
 
-.priority-icon {
-}
+
 
 .priority-div {
   display: flex;
@@ -213,33 +209,16 @@
   gap: 8px;
 }
 
-.category-title {
-}
-
-.category-select {
-}
-
-.subtasks-container {
-}
-
-.subtasks-title {
-}
-
-.subtasks-input {
-}
-
 .footer-note {
   display: flex;
   justify-content: space-around;
 }
 
-.footer-buttons {
-}
+
 b {
   color: red;
 }
-.clear-button {
-}
+
 
 .create-button {
   color: white;
@@ -254,6 +233,5 @@ b {
   gap: 0px;
   border: 1px 0px 0px 0px;
   opacity: 0px;
-  angle: -0 deg;
   border: 1px solid #d1d1d1;
 }
