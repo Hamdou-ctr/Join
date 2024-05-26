@@ -3,9 +3,7 @@
         "kontakt1": {
             "mail": "juergen.burbrich@gmail.com",
             "name": "Jürgen Burbrich",
-            "telefonnummer": "41766101800",
-            "edit contact": "delete",
-            "create": "create"
+            "telefonnummer": "41766101800"
         },
         "kontakt2": {
             "mail": "mail@gregorkrebs.de",
