@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/mobile.css">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
+</head>
+
+<body>
+    <div class="container">
+        <img src="./assets/img/logo.svg" alt="Join Logo" class="logo">
+        <div id="loginForm" class="main centered-div" style="height: 630px;">
+            <a href="./login.html" class="arrow-back"><img src="./assets/img/arrow-left-line.png"></a>
+            <h1>Sign up</h1>
+            <hr>
+            <form id="loginForm">
+                <input type="text" id="name" name="name" placeholder="Name" required>
+                <br>
+                <input type="mail" id="email" name="email" placeholder="E-Mail" required>
+                <br>
+                <input type="password" id="username" name="password" placeholder="Password" required>
+                <br>
+                <input type="password" id="username" name="password" placeholder="Password" required>
+                <br>
+                <br>
+                <div class="remeber-login">
+                    <input type="radio" id="remeber-login">
+                    <label for="remeber-login">I accept the <a href="#">Privacy Policy</a></label>
+                </div>
+                <div id="login-btn">
+                    <button class="btn-primary" type="submit">Login</button>
+                </div>
+            </form>
+            <div id="result"></div>
+        </div>
+        <script src="js/login.js"></script>
+    </div>
+</body>
+
+</html>

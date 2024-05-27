@@ -1,34 +1,63 @@
 const crypto = require('crypto');
 const express = require('express');
 const cors = require('cors');
-(async () => {
-    const fetch = (await import('node-fetch')).default;
-})();
+const admin = require('firebase-admin');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const https = require('https');
+const fs = require('fs');
+const path = require('path');
+const sanitizeHtml = require('sanitize-html');
+const csurf = require('csurf');
+const helmet = require('helmet');
+
+const serviceAccount = require('./join-210-firebase-adminsdk-1ijlc-c9669a144d.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://join-210-default-rtdb.europe-west1.firebasedatabase.app'
+});
+
 const app = express();
 
 app.use(cors({
-    origin: 'https://join-210.gregorkrebs.de/', // Die genaue URL Ihrer Frontend-Anwendung
+    origin: 'https://join-210.gregorkrebs.de', // Die genaue URL Ihrer Frontend-Anwendung
     credentials: true // CORS-Einstellungen, um Cookies zuzulassen
 }));
 
 app.use(bodyParser.json()); // Middleware, um JSON-Körper zu parsen
 app.use(cookieParser());
 
-// Session-Management einrichten
 app.use(session({
     secret: 'geheime_schlüssel',
     resave: false,
     saveUninitialized: true,
     cookie: {
-        secure: false, // Setzen Sie dies auf true, wenn Sie HTTPS verwenden
+        domain: '.gregorkrebs.de', // Cookie für alle Subdomains verfügbar machen
+        secure: true, // Setzen Sie dies auf true in Produktion
         httpOnly: true,
-        maxAge: 7200000,
-        sameSite: 'lax' // SameSite-Attribut für Cookies setzen
+        maxAge: 7200000, // Sitzungsdauer in Millisekunden
+        sameSite: 'none' // Erlaubt Cross-Site-Cookies
     }
 }));
+
+// Sicherheits-Header mit Helmet hinzufügen
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'"],
+        connectSrc: ["'self'"],
+        fontSrc: ["'self'"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
+    },
+}));
+
+const csrfProtection = csurf({ cookie: true });
+app.use(csrfProtection);
 
 const fireBaseURL = 'https://join-210-default-rtdb.europe-west1.firebasedatabase.app/accounts/';
 
@@ -48,16 +77,40 @@ function genRandomString(length) {
     return crypto.randomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
 }
 
+// Eingabebereinigung
+function sanitizeInput(input) {
+    return sanitizeHtml(input, {
+        allowedTags: [],
+        allowedAttributes: {}
+    });
+}
+
+// Middleware zur Authentifizierung mit Firebase ID Token
+async function authenticateToken(req, res, next) {
+    const idToken = req.headers.authorization && req.headers.authorization.split(' ')[1];
+    if (!idToken) return res.sendStatus(401); // Wenn kein Token vorhanden ist, verweigern
+
+    try {
+        const decodedToken = await admin.auth().verifyIdToken(idToken);
+        req.user = decodedToken;
+        next(); // Fortfahren zur nächsten Middleware/Route
+    } catch (error) {
+        console.error('Error verifying token:', error);
+        res.sendStatus(403); // Wenn das Token ungültig ist, verweigern
+    }
+}
+
 // Funktion zur Anmeldung
 async function login(username, password) {
     try {
-        let res = await fetch(`${fireBaseURL}/${username}.json`);
-        let userData = await res.json();
+        const userRef = admin.database().ref(`/accounts/${username}`);
+        const snapshot = await userRef.once('value');
+        const userData = snapshot.val();
 
         console.log('User Data:', userData);
 
         if (userData) {
-            const { salt, password: storedPassword } = userData; // Renaming to avoid shadowing
+            const { salt, password: storedPassword } = userData;
             if (!salt || !storedPassword) {
                 console.error('Salt or password missing in user data');
                 return false;
@@ -74,13 +127,17 @@ async function login(username, password) {
     }
 }
 
-app.post('/api/login', async (req, res) => {
-    const { username, password } = req.body;
+app.get('/api/form', csrfProtection, (req, res) => {
+    res.json({ csrfToken: req.csrfToken() });
+});
+
+app.post('/api/login', csrfProtection, async (req, res) => {
+    const username = sanitizeInput(req.body.username);
+    const password = sanitizeInput(req.body.password);
 
     const isValidUser = await login(username, password);
 
     if (isValidUser) {
-        // Sitzung speichern
         req.session.username = username;
         console.log('Session created:', req.session); // Debugging: Anzeigen der Sitzung
         res.json({ status: '200' });
@@ -90,7 +147,7 @@ app.post('/api/login', async (req, res) => {
 });
 
 // Endpunkt zur Überprüfung des Anmeldestatus
-app.get('/api/status', (req, res) => {
+app.get('/api/status', csrfProtection, (req, res) => {
     console.log('Session check:', req.session); // Debugging: Anzeigen der aktuellen Sitzung
     if (req.session.username) {
         res.json({ loggedIn: true, username: req.session.username });
@@ -99,10 +156,30 @@ app.get('/api/status', (req, res) => {
     }
 });
 
+app.post('/api/logout', csrfProtection, (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).json({ status: '500', message: 'Logout failed' });
+        }
+        res.clearCookie('connect.sid'); // 'connect.sid' ist der Standardname des Session-Cookies
+        return res.json({ status: '200', message: 'Logout successful' });
+    });
+});
+
+// Geschützter Endpunkt zur Datenabfrage mit Authentifizierung
+app.get('/api/data', authenticateToken, async (req, res) => {
+    const userRef = admin.database().ref('/some/path');
+    const snapshot = await userRef.once('value');
+    res.json(snapshot.val());
+});
+
 app.use(express.static('public'));
 
-app.listen(3000, () => {
-    console.log(`Server läuft auf http://localhost:3000`);
+https.createServer({
+  key: fs.readFileSync(path.resolve('./ssl/auth.gregorkrebs.de.key')),
+  cert: fs.readFileSync(path.resolve('./ssl/auth.gregorkrebs.de.crt'))
+}, app).listen(3033, () => {
+  console.log('Server läuft auf https://auth.gregorkrebs.de');
 });
 
 // Beispiel zum Erstellen eines neuen Benutzers
@@ -118,16 +195,10 @@ async function createUser(username, password) {
     };
 
     // Speichern des Benutzers in der Firebase-Datenbank
-    await fetch(`${fireBaseURL}/${username}.json`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(user)
-    });
+    await admin.database().ref(`/accounts/${username}`).set(user);
 
     console.log(`Benutzer ${username} erstellt.`);
 }
 
 // Beispielaufruf zum Erstellen eines Benutzers
-// createUser('admin', 'password');
+// createUser('hamidou', 'password');

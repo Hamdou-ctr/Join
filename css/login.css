@@ -25,8 +25,8 @@ div#loginForm {
     height: 493px;
     border-radius: 30px;
     border-style: inherit;
-    /* padding: 48px 115px 48px 115px; */
     gap: 32px;
+    padding-top: 60px;
 }
 
 form#loginForm {
@@ -62,4 +62,12 @@ div#loginForm h1 {
     gap: 10px;
     margin-left: 4%;
     margin-bottom: 11px;
+}
+
+.arrow-back {
+    margin-bottom: -86px;
+    margin-right: auto;
+    margin-left: 40px;
+    height: 32px;
+    width: 32px;
 }
