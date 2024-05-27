@@ -1,6 +1,9 @@
-/* const BASE_URL =
-  "https://join-210-default-rtdb.europe-west1.firebasedatabase.app/";
- */
+
+
+
+
+const BASE_URL = "https://join-210-default-rtdb.europe-west1.firebasedatabase.app/";
+
 let allTasks = [];
 
 function initial() {
@@ -9,37 +12,39 @@ function initial() {
   for (let icon of priorityIcons) {
     icon.addEventListener("click", function () {
       priorityIcons.forEach((icon) => icon.classList.remove("selected"));
-
       this.classList.add("selected");
     });
   }
-  init();
-
   loadAllTasks();
   show();
-  loadFireBaseUrl();
-
-  //postData("/tasks", { Hamidou: "Diallo" });
-}
-
-async function loadFireBaseUrl(path = "") {
-  let respose = await fetch(BASE_URL + path + ".json");
-  let resposeToJson = await respose.json();
-  console.log(resposeToJson);
+  
 }
 
 async function postData(path = "", data = {}) {
-  let respose = await fetch(BASE_URL + ".json", {
-    method: "post",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  let resposeToJson = await respose.json();
+  console.log("Sending data to Firebase:", data);  // Konsolenausgabe hinzugefügt
+  try {
+    let response = await fetch(`${BASE_URL}${path}.json`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      let error = await response.json();
+      console.error("Error posting data:", error);
+      throw new Error("Error posting data: " + error.error);
+    }
+    let responseToJson = await response.json();
+    console.log("Data posted successfully:", responseToJson);
+    return responseToJson;
+  } catch (error) {
+    console.error("Error in postData function:", error);
+    throw error;
+  }
 }
 
-function addTask() {
+async function addTask() {
   let inputTitle = document.getElementById("input-title").value;
   let description = document.getElementById("input-description").value;
   let assigned = document.getElementById("assigned-to-select").value;
@@ -47,7 +52,7 @@ function addTask() {
   let dueDateInput = document.getElementById("due-date-input").value;
   let subtasks = document.getElementById("subtasks-input").value;
 
-  let selectedPriority;
+   let selectedPriority;
   let priorityIcons = document.querySelectorAll(".priority-icon");
   for (let icon of priorityIcons) {
     if (icon.classList.contains("selected")) {
@@ -57,8 +62,8 @@ function addTask() {
   }
 
   if (!selectedPriority) {
-    selectedPriority = "Priority ?"; // Fallback-Pfad, falls keine Priorität ausgewählt wurde
-  }
+    selectedPriority = "Keiner ?";
+  } 
 
   let task = {
     inputTitle,
@@ -67,18 +72,19 @@ function addTask() {
     category,
     subtasks,
     priority: selectedPriority,
-    createdAt: new Date().getTime(),
+    dueDate: dueDateInput,
+    createdAt: new Date(),
   };
 
-  allTasks.push(task);
-
-  let allTasksAsString = JSON.stringify(allTasks);
-  localStorage.setItem("allTasks", allTasksAsString);
-
-  //console.log("allTasks", allTasks);
-
-  show();
-  clearForm();
+  try {
+    let addedTask = await postData("tasks", task);
+    allTasks.push({ ...task, id: addedTask.name });
+    localStorage.setItem("allTasks", JSON.stringify(allTasks));
+    show();
+    clearForm();
+  } catch (error) {
+    console.error("Error adding task:", error);
+  }
 }
 
 function show() {
@@ -89,20 +95,11 @@ function show() {
   }
 }
 
-/* function show() {
-  let content = document.getElementById("content");
-  content.innerHTML = "";
-  for (let i = 0; i < allTasks.length; i++) {
-    content.innerHTML += contentHtml(allTasks[i]);
-  }
-} */
-
 function loadAllTasks() {
   let allTasksAsString = localStorage.getItem("allTasks");
   if (allTasksAsString) {
     allTasks = JSON.parse(allTasksAsString);
   }
-  //console.log("loaded all Tasks", allTasks);
 }
 
 function clearForm() {
@@ -156,3 +153,7 @@ function createdAtHtml(task) {
     </div>
   `;
 }
+
+// Initial function call
+document.addEventListener("DOMContentLoaded", initial);
+
