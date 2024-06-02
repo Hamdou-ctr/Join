@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summary HTML</title>
-    <!-- <script src="./js/loginRequired.js"></script> -->
-    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="script.js"></script>
+    <script src="./js/loginRequired.js"></script>
+
 </head>
-<body>
+
+<body onload="init()">
     <main>
         <aside>
             <div w3-include-html="assets/templates/side_menu.html"></div>
         </aside>
 
         <section>
+
+            <div>
+                <div class="side-menu" w3-include-html="assets/templates/header_kanban.html"></div>
+
+            </div>
+
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur qui veniam ullam eius, itaque quisquam
             iusto eligendi velit nesciunt repudiandae illo veritatis soluta ipsa voluptatem! Repudiandae harum minima
             iure possimus?
         </section>
     </main>
 </body>
+
 </html>
