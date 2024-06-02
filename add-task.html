@@ -11,86 +11,102 @@
     <!-- <script src="./js/loginRequired.js"></script> -->
     <script src="js/add-task.js" defer></script>
     <!-- <script src="js/API.js" defer></script> -->
-    <script src="js/script.js" defer></script>
+    <script src="js/script.js"></script>
 </head>
 
-<body onload="initial()">
+<body class="add-task-body" onload="initial()">
     <main class="main-container">
         <aside class="sidebar">
             <div class="side-menu" w3-include-html="assets/templates/side_menu.html"></div>
         </aside>
         <section class="task-section">
-            <img src="" alt="">
-            <h1 class="section-title">Add Task</h1>
-            <div class="form-container">
-                <form class="task-form" required>
-                    <div class="form-group-title">
-                        <h4 class="form-title">Title <b>*</b></h4>
-                        <input class="text-input input-title" id="input-title" type="text" placeholder="Enter a Title"
-                            required>
-                    </div>
-                    <div class="form-group-description">
-                        <h4 class="form-description">Description</h4>
-                        <textarea class="textarea-input input-description" cols="" rows=""
-                            placeholder="Enter a Description" id="input-description" required></textarea>
-                    </div>
-                    <div class="form-group-assigned">
-                        <p class="assigned-to-title">Assigned To</p>
-                        <select class="text-input assigned-to-input" id="assigned-to-select">
-                            <option>User 1</option>
-                            <option>User 2</option>
-                            <option>User 3</option>
-                            <option>User 4</option>
-                        </select>
-                    </div>
-                </form>
-                <img class="additional-fields-image" src="assets/img/Vector 4 (1).svg" alt="">
-                <!-- <div class="separator"></div> -->
-                <div class="additional-fields">
-                    <div class="due-date-container">
-                        <p class="due-date-title form-title">Due date <b>*</b></p>
-                        <input class="due-date-input input-title" type="date" id="due-date-input" required>
-                    </div>
-                    <div class="priority-container">
-                        <p class="priority-title form-title">Priority</p>
-                        <div class="priority-icons">
-                            <div class="priority-div">Urgent
-                                <img class="priority-icon" src="assets/img/Property 1=Urgent.svg" alt="Urgent"
-                                    id="priority-urgent">
-                            </div>
-                            <div class="priority-div">Medium
-                                <img class="priority-icon" src="assets/img/Property 1=Medium.svg" alt="Medium"
-                                    id="priority-medium">
-                            </div>
-                            <div class="priority-div">Low
-                                <img class="priority-icon" src="assets/img/Property 1=Low.svg" alt="Low"
-                                    id="priority-low">
-                            </div>
+            <div>
+                <div class="side-menu" w3-include-html="assets/templates/header_kanban.html"></div>
+            </div>
+            <div class="" style="margin: 110px 80px 0px 46px;">
+                <h1 class="section-title">Add Task </h1>
+                <div class="form-container">
+                    <form class="task-form" required>
+                        <div class="form-group-title">
+                            <h4 class="form-title">Title <b>*</b></h4>
+                            <input class="text-input input-title" id="input-title" type="text"
+                                placeholder="Enter a Title" required>
                         </div>
+                        <div class="form-group-description">
+                            <h4 class="form-title">Description</h4>
+                            <textarea class="textarea-input input-description" cols="" rows=""
+                                placeholder="Enter a Description" id="input-description" required></textarea>
+                        </div>
+                        <div class="form-group-assigned">
+                            <p class="form-title">Assigned to</p>
+                            <select class="assigned-to-input" id="assigned-to-select"
+                                placeholder="Select contacts to assign">
+                                <option>User 1</option>
+                                <option>User 2</option>
+                                <option>User 3</option>
+                                <option>User 4</option>
+                            </select>
+                        </div>
+                    </form>
 
-                    </div>
-                    <div class="category-container">
-                        <p class="category-title form-title">Category <b>*</b></p>
-                        <select class="category-select input-title" id="category-select" required>
-                            <option>Technical task</option>
-                            <option>User Story</option>
-                            <option>Development</option>
-                            <option>Editing</option>
-                        </select>
-                    </div>
-                    <div class="subtasks-container">
-                        <p class="subtasks-title form-title">Subtasks</p>
-                        <input class="text-input input-title subtasks-input" type="text" placeholder="Add new subtask"
-                            id="subtasks-input">
+                    <img class="separator" src="assets/img/Vector 4 (1).svg" alt="">
+
+                    <div class="additional-fields">
+                        <div class="due-date-container">
+                            <p class="form-title">Due date <b>*</b></p>
+                            <input class="due-date-input" type="date" id="due-date-input" required>
+                        </div>
+                        <div class="priority-container">
+                            <p class="form-title">Priority</p>
+                            <div class="priority-icons">
+                                <div onclick="urgentButtonBackgrundcolor()" class="Urgent-color-red priority-div"
+                                    id="Urgent-div">
+                                    Urgent
+                                    <img class="priority-icon visible" src="assets/img/urgent-image-rot.svg"
+                                        alt="Urgent" id="priority-urgent-red">
+                                    <img class="priority-icon" src="assets/img/urgent-image-weiß.svg" alt="Low"
+                                        id="priority-urgent-white">
+                                </div>
+                                <div onclick="mediumButtonBackgrundcolor()" class="medium-color-yellow priority-div"
+                                    id="Medium-div">Medium
+                                    <img class="priority-icon visible" src="assets/img/medium-image-gelbe.svg"
+                                        alt="Medium" id="priority-medium-yellow">
+                                    <img class="priority-icon" src="assets/img/medium-image-weiß.svg" alt="Medium"
+                                        id="priority-medium-white">
+                                </div>
+                                <div onclick="lowButtonBackgrundcolor()" class="priority-clor-green priority-div"
+                                    id="Low-div">Low
+                                    <img class="priority-icon visible" src="assets/img/low-image-grune.svg" alt="Low"
+                                        id="priority-low-green">
+                                    <img class="priority-icon" src="assets/img/low-image-weiß.svg" alt="Low"
+                                        id="priority-low-white">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="category-container">
+                            <p class="form-title">Category <b>*</b></p>
+                            <select class="category-select" id="category-select" required>
+                                <option>Technical task</option>
+                                <option>User Story</option>
+                                <option>Development</option>
+                                <option>Editing</option>
+                            </select>
+                        </div>
+                        <div class="subtasks-container">
+                            <p class="form-title">Subtasks</p>
+                            <input class="subtasks-input" type="text" placeholder="Add new subtask" id="subtasks-input">
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="footer-note">
                 <p><b>*</b> This field is required</p>
                 <div class="footer-buttons">
-                    <button class="clear-button" type="button" onclick="clearForm()">Clear X</button>
+                    <button class="clear-button btn-secondary" type="button" onclick="clearForm()">Clear X</button>
                     <a href="board.html">
-                        <button class="create-button" type="submit" onclick="addTask()">Create Task √</button>
+                        <button class="create-button btn-primary" type="submit" onclick="addTask()">Create Task
+                            ✓</button>
                     </a>
                 </div>
             </div>
