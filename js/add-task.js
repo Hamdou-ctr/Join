@@ -1,8 +1,26 @@
+/* 
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "accounts": {
+      "$user_id": {
+        ".read": "$user_id === auth.uid",
+        ".write": "$user_id === auth.uid"
+      }
+    }
+  }
+}
+ */
 
+const priorityImage = {
+  Urgent: "assets/img/Property_Urgent.svg",
+  Medium: "assets/img/Property_Medium.svg",
+  Low: "assets/img/Property_Low.svg",
+};
 
-
-
-const BASE_URL = "https://join-210-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL =
+  "https://join-210-default-rtdb.europe-west1.firebasedatabase.app/";
 
 let allTasks = [];
 
@@ -16,12 +34,12 @@ function initial() {
     });
   }
   loadAllTasks();
-  show();
-  
+  //show();
+  init();
 }
 
-async function postData(path = "", data = {}) {
-  console.log("Sending data to Firebase:", data);  // Konsolenausgabe hinzugefügt
+/* async function postData(path = "", data = {}) {
+  console.log("Sending data to Firebase:", data); // Konsolenausgabe hinzugefügt
   try {
     let response = await fetch(`${BASE_URL}${path}.json`, {
       method: "POST",
@@ -42,7 +60,7 @@ async function postData(path = "", data = {}) {
     console.error("Error in postData function:", error);
     throw error;
   }
-}
+} */
 
 async function addTask() {
   let inputTitle = document.getElementById("input-title").value;
@@ -52,7 +70,7 @@ async function addTask() {
   let dueDateInput = document.getElementById("due-date-input").value;
   let subtasks = document.getElementById("subtasks-input").value;
 
-   let selectedPriority;
+  let selectedPriority;
   let priorityIcons = document.querySelectorAll(".priority-icon");
   for (let icon of priorityIcons) {
     if (icon.classList.contains("selected")) {
@@ -63,7 +81,7 @@ async function addTask() {
 
   if (!selectedPriority) {
     selectedPriority = "Keiner ?";
-  } 
+  }
 
   let task = {
     inputTitle,
@@ -72,19 +90,20 @@ async function addTask() {
     category,
     subtasks,
     priority: selectedPriority,
+    priorityImage: priorityImage[selectedPriority] || "",
     dueDate: dueDateInput,
-    createdAt: new Date(),
+    createdAt: new Date().getTime(),
   };
 
-  try {
-    let addedTask = await postData("tasks", task);
-    allTasks.push({ ...task, id: addedTask.name });
-    localStorage.setItem("allTasks", JSON.stringify(allTasks));
-    show();
-    clearForm();
-  } catch (error) {
+  /* try { */
+  //let addedTask = await postData("tasks", task);
+  //allTasks.push({ ...task, id: addedTask.name });
+  localStorage.setItem("allTasks", JSON.stringify(allTasks));
+  show();
+  clearForm();
+  /* } catch (error) {
     console.error("Error adding task:", error);
-  }
+  } */
 }
 
 function show() {
@@ -109,6 +128,111 @@ function clearForm() {
   document.getElementById("category-select").value = "";
   document.getElementById("due-date-input").value = "";
   document.getElementById("subtasks-input").value = "";
+}
+
+
+function urgentButtonBackgrundcolor() {
+  let urgenRed = document.getElementById("priority-urgent-red");
+  let urgentWhite = document.getElementById("priority-urgent-white");
+
+  if (urgenRed.classList.contains("visible")) {
+    urgenRed.classList.remove("visible");
+    urgentWhite.classList.add("visible");
+    urgentButtonBackgrundcolorRed();
+  } else {
+    urgenRed.classList.add("visible");
+    urgentWhite.classList.remove("visible");
+    urgentButtonBackgrundcolorWhite();
+  }
+}
+
+function urgentButtonBackgrundcolorRed() {
+  document
+    .getElementById("Urgent-div")
+    .classList.replace("priority-div", "Urgent-color-red");
+
+  mediumButtonBackgrundcolorWhite();
+  lowButtonBackgrundcolorWhite();
+}
+
+function urgentButtonBackgrundcolorWhite() {
+  document
+    .getElementById("Urgent-div")
+    .classList.replace("Urgent-color-red", "priority-div");
+  //mediumButtonBackgrundcolorYellow();
+  mediumButtonBackgrundcolorWhite();
+  //lowButtonBackgrundcolorgreen();
+  lowButtonBackgrundcolorWhite();
+}
+
+function mediumButtonBackgrundcolor() {
+  let mediumYellow = document.getElementById("priority-medium-yellow");
+  let mediumWhite = document.getElementById("priority-medium-white");
+
+  if (mediumYellow.classList.contains("visible")) {
+    mediumYellow.classList.remove("visible");
+    mediumWhite.classList.add("visible");
+    mediumButtonBackgrundcolorYellow();
+  } else {
+    mediumYellow.classList.add("visible");
+    mediumWhite.classList.remove("visible");
+    mediumButtonBackgrundcolorWhite();
+  }
+}
+
+function mediumButtonBackgrundcolorYellow() {
+  document
+    .getElementById("Medium-div")
+    .classList.replace("priority-div", "medium-color-yellow");
+  urgentButtonBackgrundcolorWhite();
+  //urgentButtonBackgrundcolorRed();
+  //lowButtonBackgrundcolorgreen();
+  lowButtonBackgrundcolorWhite();
+}
+
+function mediumButtonBackgrundcolorWhite() {
+  document
+    .getElementById("Medium-div")
+    .classList.replace("medium-color-yellow", "priority-div");
+  //urgentButtonBackgrundcolorWhite();
+  //urgentButtonBackgrundcolorRed();
+  //lowButtonBackgrundcolorgreen();
+  //lowButtonBackgrundcolorWhite();
+}
+
+function lowButtonBackgrundcolor() {
+  let lowgreen = document.getElementById("priority-low-green");
+  let lowWhite = document.getElementById("priority-low-white");
+
+  if (lowgreen.classList.contains("visible")) {
+    lowgreen.classList.remove("visible");
+    lowWhite.classList.add("visible");
+    lowButtonBackgrundcolorgreen();
+  } else {
+    lowgreen.classList.add("visible");
+    lowWhite.classList.remove("visible");
+    lowButtonBackgrundcolorWhite();
+  }
+}
+
+function lowButtonBackgrundcolorgreen() {
+  document
+    .getElementById("Low-div")
+    .classList.replace("priority-div", "priority-clor-green");
+  //urgentButtonBackgrundcolorWhite();
+  //urgentButtonBackgrundcolorRed();
+  //mediumButtonBackgrundcolorYellow();
+  //mediumButtonBackgrundcolorWhite();
+}
+
+function lowButtonBackgrundcolorWhite() {
+  document
+    .getElementById("Low-div")
+    .classList.replace("priority-clor-green", "priority-div");
+  //urgentButtonBackgrundcolorWhite();
+  //urgentButtonBackgrundcolorRed();
+  //mediumButtonBackgrundcolorYellow();
+  //mediumButtonBackgrundcolorWhite();
 }
 
 function contentHtml(task) {
@@ -153,7 +277,3 @@ function createdAtHtml(task) {
     </div>
   `;
 }
-
-// Initial function call
-document.addEventListener("DOMContentLoaded", initial);
-
