@@ -1,17 +1,27 @@
 .header-menu {
+    display: flex;
+
     padding: 32px;
     background-color: white;
-    width: 85vw;
+    width: 39vw;
 }
 
 #add-contact {
     margin: 30px;
 }
 
+.add-contact-text {
+    width: 422px;
+    height: 215px;
+    top: 137px;
+    left: 742px;
+    gap: 32px;
+}
+
 .contact-section {
     background-color: white;
-    width: 45%;
-    max-height: 90vH;
+    width: 100%;
+    max-height: 100vH;
     overflow: scroll;
 }
 
@@ -50,14 +60,48 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+
 }
+
+.overlay-edit-contact {
+    display: flex;
+    justify-content: center;
+    width: 1212px;
+    height: 400px;
+}
+
+.btn-primary {
+    background-color: #2a3647;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 8px;
+    width: 250px;
+
+}
+
+.app-logo-contact {
+    display: flex;
+    padding: 1%;
+    margin-bottom: 80px;
+
+}
+.form-buttons{
+
+}
+
+
 
 form {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 400px;
+}
+
+.close {
+    display: flex;
+    margin-right: 100px;
 }
 
 label {
@@ -78,12 +122,14 @@ input[type="tel"] {
 }
 
 input[type="submit"] {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     background-color: #4CAF50;
     border: none;
-    border-radius: 4px;
+    border-radius: 2px;
     color: white;
-    font-size: 16px;
+    font-size: 8px;
     cursor: pointer;
 }
