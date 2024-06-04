@@ -1,24 +1,31 @@
+<!DOCTYPE html>
 
-<html lang="en"><head>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
-    <script src="js/checkSession.js"></script>s
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/contacts.css">
     <link rel="stylesheet" href="./css/fonts.css">
-    <script src="./js/script.js" defer=""></script>
-    <script src="./js/contacts.js"></script>
+    <!--<script src="script.js" defer=""></script>-->
+    <!--<script src="./js/contacts.js"></script>-->
     <!-- <script src="./js/loginRequired.js"></script> -->
+    <!--<script src="js/contacts.js"></script>-->
+    <!--<script src="script.js"></script>-->
+    <script src="contacts.js"></script>
+    <script src="contactsjson.js"></script>
     <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
 </head>
 
 <body onload="contacts()">
+
     <main id="main-content">
         <div class="sidebar">
             <img class="app-logo" src="assets/img/Capa 1.svg" alt="App Logo">
-        
+
+
             <div class="sidebar-menu"
                 style="display: flex; flex-direction: column; gap: 16px; padding: 1.5%; box-sizing: border-box;">
                 <a href="" class="menu-item">
@@ -29,7 +36,7 @@
                     <img class="menu-icon" src="assets/img/edit_square.svg" alt="Add Task Icon">
                     <h3 class="menu-title">Add Task</h3>
                 </a>
-        
+
                 <a class="menu-item" href="board.html">
                     <img class="menu-icon" src="assets/img/Vector-2.svg" alt="Board Icon">
                     <h3 class="menu-title">Board</h3>
@@ -40,94 +47,8 @@
                 </a>
             </div>
         </div>
-
-<html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Contacts</title>
-        <link rel="stylesheet" href="./css/style.css">
-        <link rel="stylesheet" href="./css/contacts.css">
-        <link rel="stylesheet" href="./css/fonts.css">
-        <script src="script.js" defer=""></script>
-        <script src="./js/contacts.js"></script>
-        <!-- <script src="./js/loginRequired.js"></script> -->
-        <script src="js/contacts.js"></script>
-        <script src="script.js"></script>
-        <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
-    </head>
-
-    <body onload="contacts()">
-        <main id="main-content">
-            <div class="sidebar">
-                <img class="app-logo" src="assets/img/Capa 1.svg" alt="App Logo">
-
-
-                <div class="sidebar-menu" style="display: flex; flex-direction: column; gap: 16px; padding: 1.5%; box-sizing: border-box;">
-                    <a href="" class="menu-item">
-                        <img class="menu-icon" src="assets/img/Vector.svg" alt="Summary Icon">
-                        <h3 class="menu-title">Summary</h3>
-                    </a>
-                    <a href="add-task.html" class="menu-item">
-                        <img class="menu-icon" src="assets/img/edit_square.svg" alt="Add Task Icon">
-                        <h3 class="menu-title">Add Task</h3>
-                    </a>
-
-                    <a class="menu-item" href="board.html">
-                        <img class="menu-icon" src="assets/img/Vector-2.svg" alt="Board Icon">
-                        <h3 class="menu-title">Board</h3>
-                    </a>
-                    <a href="contacts.html" class="menu-item">
-                        <img class="menu-icon" src="assets/img/perm_contact_calendar.svg" alt="Contacts Icon">
-                        <h3 class="menu-title">Contacts</h3>
-                    </a>
-                </div>
-            </div>
-            <section class="content">
-                <div class="header-menu">
-                    Kanban Project Management Tool
-                </div>
-                <div class="contact-section">
-                    <div class="edit-contact">
-                        <button id="edit-contact" class="btn-primary">
-                            Edit Contact
-                        </button>
-                        <form id="contactForm">
-                            <label for="name">Name:</label>
-                            <input type="text" id="name" name="name" value="" required>
-                            <br>
-
-                            <label for="email">E - Mail:</label>
-                            <input type="email" id="email" name="email" value="" required>
-                            <br>
-
-                            <label for="telefonnummer">Telefonnummer:</label>
-                            <input type="tel" id="telefonnummer" name="telefonnummer" value="" required>
-                            <br>
-                            <div class="form-buttons">
-                                <button type="button" class="btn-secondary" onclick="clearForm()">
-                                    Delete
-                                </button>
-                                <button type="button" class="btn-primary" onclick="submitForm()">
-                                    Save
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="add-contact">
-                        <button id="add-contact" class="btn-primary">
-                        Add new contact
-                    </button>
-                    </div>
-                    <div id="contacts">
-                    </div>
-
-
-                </div>
-
-            </section>
-        </main>
-    </body>
+        <div id="content"></div>
+    </main>
+</body>
 
 </html>
