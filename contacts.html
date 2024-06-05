@@ -1,39 +1,69 @@
-<!DOCTYPE html>
+
 <html lang="en">
+
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
-    <link rel="shortcut icon" href="assets/img/Logo for Favicon construction.svg" type="image/x-icon">
-    <link rel="stylesheet" href="css/login.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/contacts.css">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <script src="script.js" defer=""></script>
+    <script src="./js/contacts.js"></script>
+    <script src="./script.js"></script>
+    <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
 </head>
 
-<body onload="initBoard()">
-    <main>
+<body onload="contacts()">
+    <main id="main-content">
         <aside class="sidebar">
+            <img class="app-logo" src="assets/img/Capa 1.svg" alt="App Logo">
+
+
+            <div class="sidebar-menu"
+                style="display: flex; flex-direction: column; gap: 16px; padding: 1.5%; box-sizing: border-box;">
+                <a href="" class="menu-item">
+                    <img class="menu-icon" src="assets/img/Vector.svg" alt="Summary Icon">
+                    <h3 class="menu-title">Summary</h3>
+                </a>
+                <a href="add-task.html" class="menu-item">
+                    <img class="menu-icon" src="assets/img/edit_square.svg" alt="Add Task Icon">
+                    <h3 class="menu-title">Add Task</h3>
+                </a>
+
+                <a class="menu-item" href="board.html">
+                    <img class="menu-icon" src="assets/img/Vector-2.svg" alt="Board Icon">
+                    <h3 class="menu-title">Board</h3>
+                </a>
+                <a href="contacts.html" class="menu-item">
+                    <img class="menu-icon" src="assets/img/perm_contact_calendar.svg" alt="Contacts Icon">
+                    <h3 class="menu-title">Contacts</h3>
+                </a>
+            </div>
             <div class="side-menu" w3-include-html="assets/templates/side_menu.html"></div>
         </aside>
 
-        <section class="board-task" id="board-task">
-            <div class="header-menu">Kanban Project Management Tool</div>
-            <div class="contact-section">
-                <div class="add-contact">
-                    <button id="add-contact" class="btn-primary">Add new contact</button>
-                </div>
-                <div id="contacts">
-                    <!-- Example contact card, replicate this for each contact -->
-                    <div class="contact-card">
-                        <div class="contact-initial" style="background-color: #FFD700;">TW</div>
-                        <div class="contact-details">
-                            <h3 class="contact-name">Tatjana Wolf</h3>
-                            <p class="contact-email">wolf@gmail.com</p>
+
+        <div>
+            <section>
+                <div class="header-menu">Kanban Project Management Tool</div>
+                <div class="contact-section">
+                    <div class="add-contact">
+                        <button id="openPopup" class="btn-primary">Add new contact</button>
+                    </div>
+
+                    <div id="popup" class="popup">
+                        <div class="popup-content">
+                            <span id="closePopup" class="close">&times;</span>
+                            <h2>Add New Contact</h2>
+                            <!-- Form or other content goes here -->
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
+                    <div id="alphabet"></div>
+                    <div id="contacts"></div>
+            </section>
+        </div>
     </main>
 </body>
 
