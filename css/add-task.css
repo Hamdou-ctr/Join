@@ -8,20 +8,6 @@
   background: #f6f7f8;
 }
 
-/* urgent color    
-    #ff3d00
-    rgba(255,61,0,255)
-*/
-
-/* medium color    
-    #ffa800
-    rgba(255,168,0,255)
-*/
-
-/* low color
-    #7ae229
-    rgba(122,226,41,255)
-*/
 
 .priority-icon {
   display: none;
@@ -138,8 +124,8 @@
 
 .separator {
   width: 0px;
-  height: 424px;
-  /* top: 327px; */
+  height: 416px;
+  margin-top: 57px;
   left: 816.25px;
   border: 1px;
   border: 1px solid #d1d1d1;
@@ -195,7 +181,7 @@
   text-align: left;
 }
 
-.medium-color-yellow{
+.medium-color-yellow {
   background-color: #ffa800;
   color: white;
   display: flex;
@@ -214,7 +200,7 @@
   text-align: left;
 }
 
-.priority-clor-green{
+.priority-clor-green {
   background-color: #7ae229;
   color: white;
   display: flex;
@@ -308,8 +294,8 @@
 .footer-note {
   display: flex;
   justify-content: space-around;
-  height: 56px;
-  margin-top: 137px;
+  /* height: 56px; */
+  /* margin-top: 137px;  */ /* hier ist richtig */
   left: 995.25px;
   gap: 16px;
   opacity: 0px;
@@ -322,6 +308,7 @@
   border: 1px solid #3e95d4;
   font-size: 22px;
 }
+
 .create-button:hover {
   cursor: pointer;
   background-color: #3e95d4;
