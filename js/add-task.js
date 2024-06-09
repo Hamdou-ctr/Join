@@ -1,17 +1,4 @@
-/* 
-{
-  "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null",
-    "accounts": {
-      "$user_id": {
-        ".read": "$user_id === auth.uid",
-        ".write": "$user_id === auth.uid"
-      }
-    }
-  }
-}
- */
+
 
 const priorityImage = {
   Urgent: "assets/img/Property_Urgent.svg",
@@ -34,11 +21,11 @@ function initial() {
     });
   }
   loadAllTasks();
-  //show();
+  show();
   init();
 }
 
-/* async function postData(path = "", data = {}) {
+ async function postData(path = "", data = {}) {
   console.log("Sending data to Firebase:", data); // Konsolenausgabe hinzugefügt
   try {
     let response = await fetch(`${BASE_URL}${path}.json`, {
@@ -60,7 +47,7 @@ function initial() {
     console.error("Error in postData function:", error);
     throw error;
   }
-} */
+} 
 
 async function addTask() {
   let inputTitle = document.getElementById("input-title").value;
@@ -95,15 +82,15 @@ async function addTask() {
     createdAt: new Date().getTime(),
   };
 
-  /* try { */
-  //let addedTask = await postData("tasks", task);
-  //allTasks.push({ ...task, id: addedTask.name });
-  localStorage.setItem("allTasks", JSON.stringify(allTasks));
-  show();
-  clearForm();
-  /* } catch (error) {
+  try {
+    let addedTask = await postData("tasks", task);
+    allTasks.push({ ...task, id: addedTask.name });
+    localStorage.setItem("allTasks", JSON.stringify(allTasks));
+    show();
+    clearForm();
+  } catch (error) {
     console.error("Error adding task:", error);
-  } */
+  }
 }
 
 function show() {
@@ -130,7 +117,6 @@ function clearForm() {
   document.getElementById("subtasks-input").value = "";
 }
 
-
 function urgentButtonBackgrundcolor() {
   let urgenRed = document.getElementById("priority-urgent-red");
   let urgentWhite = document.getElementById("priority-urgent-white");
@@ -150,19 +136,12 @@ function urgentButtonBackgrundcolorRed() {
   document
     .getElementById("Urgent-div")
     .classList.replace("priority-div", "Urgent-color-red");
-
-  mediumButtonBackgrundcolorWhite();
-  lowButtonBackgrundcolorWhite();
 }
 
 function urgentButtonBackgrundcolorWhite() {
   document
     .getElementById("Urgent-div")
     .classList.replace("Urgent-color-red", "priority-div");
-  //mediumButtonBackgrundcolorYellow();
-  mediumButtonBackgrundcolorWhite();
-  //lowButtonBackgrundcolorgreen();
-  lowButtonBackgrundcolorWhite();
 }
 
 function mediumButtonBackgrundcolor() {
@@ -184,20 +163,12 @@ function mediumButtonBackgrundcolorYellow() {
   document
     .getElementById("Medium-div")
     .classList.replace("priority-div", "medium-color-yellow");
-  urgentButtonBackgrundcolorWhite();
-  //urgentButtonBackgrundcolorRed();
-  //lowButtonBackgrundcolorgreen();
-  lowButtonBackgrundcolorWhite();
 }
 
 function mediumButtonBackgrundcolorWhite() {
   document
     .getElementById("Medium-div")
     .classList.replace("medium-color-yellow", "priority-div");
-  //urgentButtonBackgrundcolorWhite();
-  //urgentButtonBackgrundcolorRed();
-  //lowButtonBackgrundcolorgreen();
-  //lowButtonBackgrundcolorWhite();
 }
 
 function lowButtonBackgrundcolor() {
@@ -219,20 +190,12 @@ function lowButtonBackgrundcolorgreen() {
   document
     .getElementById("Low-div")
     .classList.replace("priority-div", "priority-clor-green");
-  //urgentButtonBackgrundcolorWhite();
-  //urgentButtonBackgrundcolorRed();
-  //mediumButtonBackgrundcolorYellow();
-  //mediumButtonBackgrundcolorWhite();
 }
 
 function lowButtonBackgrundcolorWhite() {
   document
     .getElementById("Low-div")
     .classList.replace("priority-clor-green", "priority-div");
-  //urgentButtonBackgrundcolorWhite();
-  //urgentButtonBackgrundcolorRed();
-  //mediumButtonBackgrundcolorYellow();
-  //mediumButtonBackgrundcolorWhite();
 }
 
 function contentHtml(task) {
