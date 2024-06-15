@@ -2,10 +2,10 @@ function onloadFunc() {
     console.log('test');
     initContacts();
   
-    //loadData("");  // name des JSONS einfügen um das JSON zu laden
-    //postData("/name", {titel: "test"}); //neue ID wird automatisch generiert
-    //deleteData("/name/- url angeben um Objekt zu löschen")
-    //putData("/name", {titel: "test"}); //verändert das Objekt in einer ID
+    loadData("");  // name des JSONS einfügen um das JSON zu laden
+    postData("/name", {titel: "test"}); //neue ID wird automatisch generiert
+    deleteData("/name/- url angeben um Objekt zu löschen")
+    putData("/name", {titel: "test"}); //verändert das Objekt in einer ID
   }
   
   const BASE_URL = 'https://join-210-default-rtdb.europe-west1.firebasedatabase.app/';
