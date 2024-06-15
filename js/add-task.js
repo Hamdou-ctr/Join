@@ -1,13 +1,14 @@
-
-
 const priorityImage = {
   Urgent: "assets/img/Property_Urgent.svg",
   Medium: "assets/img/Property_Medium.svg",
   Low: "assets/img/Property_Low.svg",
 };
 
+/* const BASE_URL =
+  "https://join-210-default-rtdb.europe-west1.firebasedatabase.app/"; */
+
 const BASE_URL =
-  "https://join-210-default-rtdb.europe-west1.firebasedatabase.app/";
+  "https://jointest-202a5-default-rtdb.europe-west1.firebasedatabase.app/";
 
 let allTasks = [];
 
@@ -25,7 +26,7 @@ function initial() {
   init();
 }
 
- async function postData(path = "", data = {}) {
+async function postData(path = "", data = {}) {
   console.log("Sending data to Firebase:", data); // Konsolenausgabe hinzugefügt
   try {
     let response = await fetch(`${BASE_URL}${path}.json`, {
@@ -47,7 +48,7 @@ function initial() {
     console.error("Error in postData function:", error);
     throw error;
   }
-} 
+}
 
 async function addTask() {
   let inputTitle = document.getElementById("input-title").value;

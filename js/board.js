@@ -1,9 +1,8 @@
 async function initBoard() {
   init();
   await includeHTML();
-  //loadAllTasks();
+  loadTodoCards();
   updateHTML();
-
 }
 
 let contacts = [];
@@ -18,6 +17,18 @@ let todoCards = [
 
 let currentDraggedElement;
 
+function loadTodoCards() {
+  let savedTodoCards = localStorage.getItem("todoCards");
+  if (savedTodoCards) {
+    todoCards = JSON.parse(savedTodoCards);
+  }
+}
+
+function save() {
+  let todoCardsString = JSON.stringify(todoCards);
+  localStorage.setItem("todoCards", todoCardsString);
+}
+
 function updateHTML() {
   renderTodo();
   renderInProgress();
@@ -31,7 +42,7 @@ function renderTodo() {
 
   for (let i = 0; i < todo.length; i++) {
     const element = todo[i];
-    document.getElementById("todo").innerHTML += renderCardHTML(element);
+    document.getElementById("todo").innerHTML += renderCardHTML(element, i);
   }
 }
 
@@ -41,7 +52,7 @@ function renderInProgress() {
 
   for (let i = 0; i < inProgress.length; i++) {
     const element = inProgress[i];
-    document.getElementById("inProgress").innerHTML += renderCardHTML(element);
+    document.getElementById("inProgress").innerHTML += renderCardHTML(element, i);
   }
 }
 
@@ -51,8 +62,7 @@ function renderAwaitFeedback() {
 
   for (let i = 0; i < awaitFeedback.length; i++) {
     const element = awaitFeedback[i];
-    document.getElementById("awaitFeedback").innerHTML +=
-      renderCardHTML(element);
+    document.getElementById("awaitFeedback").innerHTML += renderCardHTML(element, i);
   }
 }
 
@@ -62,7 +72,7 @@ function renderDone() {
 
   for (let i = 0; i < done.length; i++) {
     const element = done[i];
-    document.getElementById("done").innerHTML += renderCardHTML(element);
+    document.getElementById("done").innerHTML += renderCardHTML(element, i);
   }
 }
 
@@ -72,7 +82,7 @@ function startDragging(id) {
 
 function renderCardHTML(element, i) {
   return /*html*/ `
-    <div draggable="true" ondragstart="startDragging(${element["id"]})" id="smallCard${i}" class="renderCardHTML" onclick="showdetailedInformation(${i})">
+    <div draggable="true" ondragstart="startDragging(${element["id"]})" id="smallCard${i}" class="renderCardHTML" onclick="showdetailedInformation(${element["id"]})">
       <div class="category">
         <h2>${element["category"]}</h2>
         <img src="" alt="">
@@ -101,6 +111,7 @@ function allowDrop(ev) {
 function moveTo(ev, category) {
   todoCards[currentDraggedElement]["category"] = category;
   updateHTML();
+  save();  // Speichern der Änderung nach dem Verschieben
 }
 
 function highlight(id) {
@@ -111,28 +122,32 @@ function removeHighlight(id) {
   document.getElementById(id).classList.remove("drag-area-highlight");
 }
 
-function showdetailedInformation(i) {
-  document.getElementById("detailed-information").style.display = "flex";
-  content = document.getElementById("detailed-information");
-  content.innerHTML = detailedInformationHTML(i);
+function showdetailedInformation(id) {
+  let element = todoCards.find(t => t.id === id);
+  if (element) {
+    document.getElementById("detailed-information").style.display = "flex";
+    let content = document.getElementById("detailed-information");
+    content.innerHTML = detailedInformationHTML(element);
+  } else {
+    console.error(`Element with id ${id} not found.`);
+  }
 }
 
 function closeCard() {
   document.getElementById("detailed-information").style.display = "none";
 }
 
-function detailedInformationHTML(i) {
-  const element = todoCards[i];
+function detailedInformationHTML(element) {
   return /*html*/ `
-    <div id="bigCard${i}" class="">
+    <div id="bigCard${element.id}" class="">
       <div class="">
         <p>category</p>
-        <h2>${element["category"]}</h2>
-        <div onclick="closCard()">
+        <h2>${element.category}</h2>
+        <div onclick="closeCard()">
             <img
             class=""
             onclick="closeCard()"
-            src=""
+            src="assets/img/close.svg"
             alt="schließen"
             />
         </div>
@@ -146,7 +161,7 @@ function detailedInformationHTML(i) {
       </div>
       <div class="">
         <div><span>Priority:</span></div>
-        <div> <img src="assets/img/Property 1=Medium.svg" ></div>
+        <div> <img src="assets/img/medium-image-gelbe.svg" ></div>
       </div>
       <div class="">
         <div><span>Assigned to:</span></div>
@@ -170,12 +185,12 @@ function detailedInformationHTML(i) {
         </div>
         <div class="">
             <div class="">
-                <img src="" alt="">
+                <img src="assets/img/delete.svg" alt="">
                 <span>Delete</span>
             </div>
             <div class=""></div>
             <div class="">
-                <img src="" alt="">
+                <img src="assets/img/edit.svg" alt="">
                 <span>Edit</span>
             </div>
       </div>
