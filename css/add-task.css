@@ -2,11 +2,11 @@
   box-sizing: border-box;
   margin: 0;
 }
-.add-task-body {
+/* .add-task-body {
   max-width: 1440px;
   max-height: 1024px;
   background: #f6f7f8;
-}
+} */
 
 
 .priority-icon {
