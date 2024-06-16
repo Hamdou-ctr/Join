@@ -189,18 +189,28 @@ function lowButtonBackgrundcolor() {
     lowWhite.classList.remove("visible");
     lowButtonBackgrundcolorWhite();
   }
-}
+
+  // if (target === "green") {
+  //   document
+  //   .getElementById("Low-div")
+  //   .classList.replace("priority-div", "priority-color-green");
+  // } else if (target === "white") {
+  //     document
+  //   .getElementById("Low-div")
+  //   .classList.replace("priority-color-green", "priority-div");
+  // }
+} 
 
 function lowButtonBackgrundcolorgreen() {
   document
     .getElementById("Low-div")
-    .classList.replace("priority-div", "priority-clor-green");
+    .classList.replace("priority-div", "priority-color-green");
 }
 
 function lowButtonBackgrundcolorWhite() {
   document
     .getElementById("Low-div")
-    .classList.replace("priority-clor-green", "priority-div");
+    .classList.replace("priority-color-green", "priority-div");
 }
 
 function contentHtml(task) {
@@ -245,3 +255,4 @@ function createdAtHtml(task) {
     </div>
   `;
 }
+
