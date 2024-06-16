@@ -1,0 +1,73 @@
+.logo {
+    width: 100.03px;
+    height: 121.97px;
+    top: 80px;
+    left: 77px;
+    gap: 0px;
+    opacity: 0px;    
+}
+
+.container {
+    display: grid;
+    place-items: center;
+    height: 80vh;
+}
+
+img.logo {
+    margin-right: 80%;
+}
+
+div#loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 652px;
+    height: 493px;
+    border-radius: 30px;
+    border-style: inherit;
+    gap: 32px;
+    padding-top: 60px;
+}
+
+form#loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 75%;
+}
+
+div#login-btn {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* label {
+    display: none;
+} */
+
+div#loginForm hr {
+    color: #29ABE2;
+    width: 150px;
+    border-style: solid;
+    border-width: initial;
+}
+
+div#loginForm h1 {
+    font-size: 61px;
+}
+
+.remeber-login {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 4%;
+    margin-bottom: 11px;
+}
+
+.arrow-back {
+    margin-bottom: -86px;
+    margin-right: auto;
+    margin-left: 40px;
+    height: 32px;
+    width: 32px;
+}

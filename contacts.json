@@ -1,0 +1,130 @@
+{
+    "alphabet":
+[
+    {
+        "letter": "A",
+        "contacts": []
+    },
+    {
+        "letter": "B",
+        "contacts": [
+            {
+                "firstname": "Jürgen",
+                "lastname": "Burbrich",
+                "mail": "juergen.burbrich@gmail.com",
+                "phonenumber": 41766101800
+            }
+        ]
+    },
+    {
+        "letter": "C",
+        "contacts": []
+    },
+    {
+        "letter": "D",
+        "contacts": [
+            {
+                "firstname": "Hamidou",
+                "lastname": "Diallo",
+                "mail": "hamidou-diallo@gmx.de",
+                "phonenumber": 4915756163342
+            }
+        ]
+    },
+    {
+        "letter": "E",
+        "contacts": []
+    },
+    {
+        "letter": "F",
+        "contacts": []
+    },
+    {
+        "letter": "G",
+        "contacts": []
+    },
+    {
+        "letter": "H",
+        "contacts": []
+    },
+    {
+        "letter": "I",
+        "contacts": []
+    },
+    {
+        "letter": "J",
+        "contacts": []
+    },
+    {
+        "letter": "K",
+        "contacts": [
+            {
+                "firstname": "Gregor",
+                "lastname": "Krebs",
+                "mail": "mail@gregorkrebs.de",
+                "phonenumber": 491709049821
+            }
+        ]
+    },
+    {
+        "letter": "L",
+        "contacts": []
+    },
+    {
+        "letter": "M",
+        "contacts": []
+    },
+    {
+        "letter": "N",
+        "contacts": []
+    },
+    {
+        "letter": "O",
+        "contacts": []
+    },
+    {
+        "letter": "P",
+        "contacts": []
+    },
+    {
+        "letter": "Q",
+        "contacts": []
+    },
+    {
+        "letter": "R",
+        "contacts": []
+    },
+    {
+        "letter": "S",
+        "contacts": []
+    },
+    {
+        "letter": "T",
+        "contacts": []
+    },
+    {
+        "letter": "U",
+        "contacts": []
+    },
+    {
+        "letter": "V",
+        "contacts": []
+    },
+    {
+        "letter": "W",
+        "contacts": []
+    },
+    {
+        "letter": "X",
+        "contacts": []
+    },
+    {
+        "letter": "Y",
+        "contacts": []
+    },
+    {
+        "letter": "Z",
+        "contacts": []
+    }
+]
+}
