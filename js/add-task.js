@@ -50,7 +50,8 @@ async function postData(path = "", data = {}) {
   }
 }
 
-async function addTask() {
+async function addTask(event) {
+  event.preventDefault();
   let inputTitle = document.getElementById("input-title").value;
   let description = document.getElementById("input-description").value;
   let assigned = document.getElementById("assigned-to-select").value;
@@ -92,6 +93,9 @@ async function addTask() {
   } catch (error) {
     console.error("Error adding task:", error);
   }
+
+  //alert('Task successfully created!');
+  //document.querySelector('.task-form').reset();
 }
 
 function show() {
