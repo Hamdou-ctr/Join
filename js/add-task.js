@@ -189,16 +189,6 @@ function lowButtonBackgrundcolor() {
     lowWhite.classList.remove("visible");
     lowButtonBackgrundcolorWhite();
   }
-
-  // if (target === "green") {
-  //   document
-  //   .getElementById("Low-div")
-  //   .classList.replace("priority-div", "priority-color-green");
-  // } else if (target === "white") {
-  //     document
-  //   .getElementById("Low-div")
-  //   .classList.replace("priority-color-green", "priority-div");
-  // }
 } 
 
 function lowButtonBackgrundcolorgreen() {
