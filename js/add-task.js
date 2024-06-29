@@ -1,7 +1,7 @@
 const priorityImage = {
-  Urgent: "assets/img/Property_Urgent.svg",
-  Medium: "assets/img/Property_Medium.svg",
-  Low: "assets/img/Property_Low.svg",
+  Urgent: "assets/img/urgent-image-rot.svg",
+  Medium: "assets/img/medium-image-gelbe.svg",
+  Low: "assets/img/low-image-grune.svg",
 };
 
 /* const BASE_URL =
