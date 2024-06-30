@@ -8,14 +8,12 @@
     <link rel="shortcut icon" href="assets/img/Logo for Favicon construction.svg" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/add-task.css">
-    <script src="./js/loginRequired.js"></script>
-    <script src="js/add-task.js" defer></script>
-    <script src="js/API.js" defer></script>
-    <script src="js/inClude.js"></script>
+    <script defer src="js/add-task.js"></script>
+    <script src="js/includehtml.js"></script>
     <script src="js/board.js"></script>
 </head>
 
-<body class="add-task-body" onload="initial()">
+<body class="add-task-body" onload="initAddTask()">
     <main class="main-container">
         <aside class="sidebar">
             <div class="side-menu" w3-include-html="assets/templates/side_menu.html"></div>
@@ -117,9 +115,22 @@
                     </a>
                 </div>
             </div>
-            <div id="content" class="content"></div>
+            <div style="display: flex; justify-content: space-around;">
+                
+                <div id="content" class="content"></div>
+
+                <div id="task-list"> Hallo</div>
+            </div>
+           
         </section>
     </main>
+
+
+
+    <!-- /* async function deleteData(path = "") {
+  let response = await fetch(`${BASE_URL}${path}.json`, { method: "DELETE" });
+  return await response.json();
+} */ -->
 </body>
 
 </html>
