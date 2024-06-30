@@ -22,35 +22,8 @@ async function initAddTask() {
   await fetchTasksAndDisplay();
 }
 
-async function postData(path = "", data = {}) {
-  try {
-    let response = await fetch(`${BASE_URL}${path}.json`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (!response.ok) throw new Error(await response.json());
-    return await response.json();
-  } catch (error) {
-    console.error("Error in postData:", error);
-    throw error;
-  }
-}
 
-async function deleteData(path = "") {
-  try {
-    let response = await fetch(`${BASE_URL}${path}.json`, { method: "DELETE" });
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    console.log("Data deleted successfully");
-  } catch (error) {
-    console.error("Error deleting data:", error);
-    throw error;
-  }
 
-  initAddTask();
-}
 
 async function addTask(event) {
   event.preventDefault();
@@ -245,81 +218,3 @@ function createdAtHtml(task) {
   `;
 }
 
-
-
-
-async function fetchTasksAndDisplay() {
-  try {
-    let tasksData = await fetchTasks();
-    displayTasks(tasksData);
-  } catch (error) {
-    handleFetchError(error);
-  }
-}
-
-async function fetchTasks() {
-  let response = await fetch(`${BASE_URL}tasks.json`);
-  if (!response.ok) {
-    throw new Error(`Fehler beim Abrufen der Aufgaben. Status: ${response.status}`);
-  }
-  return await response.json();
-}
-
-function handleFetchError(error) {
-  console.error("Fehler beim Laden der Aufgaben:", error);
-  document.getElementById("task-list").innerText = "Fehler beim Laden der Aufgaben.";
-}
-
-function displayTasks(tasksData) {
-  try {
-    let taskListDiv = getTaskListDiv();
-    let tasksHtml = generateTasksHtml(tasksData);
-    taskListDiv.innerHTML = tasksHtml;
-  } catch (error) {
-    handleDisplayError(error);
-  }
-  console.log(tasksData)
-}
-
-function getTaskListDiv() {
-  let taskListDiv = document.getElementById("task-list");
-  if (!taskListDiv) {
-    throw new Error(`Element mit ID 'task-list' nicht gefunden.`);
-  }
-  return taskListDiv;
-}
-
-function generateTasksHtml(tasksData) {
-  let tasksHtml = "<ul>";
-  Object.keys(tasksData).forEach(taskId => {
-    tasksHtml += generateTaskHtml(tasksData[taskId]);
-  });
-  tasksHtml += "</ul>";
-  return tasksHtml;
-}
-
-function displayTasksAsJson(tasksData) {
-  try {
-      let jsonOutputDiv = getJsonOutputDiv();
-      let jsonData = JSON.stringify(tasksData, null, 2); // Formatiertes JSON
-      jsonOutputDiv.innerHTML = `<pre>${jsonData}</pre>`;
-      console.log(jsonData);
-  } catch (error) {
-      handleJsonDisplayError(error);
-  }
- 
-}
-
-function generateTaskHtml(task) {
-  return `
-      <li>
-          <button>${task.inputTitle}</button>
-          <button>${task.assigned}</button>
-          <button>${task.description}</button>
-          <button>${task.category}</button>
-      </li>`;
-}
-
-function handleDisplayError(error) {
-  console.error("Fehler beim Anzeigen der Aufgaben:", error);
-}
