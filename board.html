@@ -9,20 +9,11 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/board.css">
 
-
-    <script src="./js/checkSession.js"></script>
-
-
-    <script src="./js/checkSession.js"></script>
-
-    <script src="./js/loginRequired.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 
-
-
-
-    <script src="js/inClude.js" defer></script>
+    <script src="js/includehtml.js" defer></script>
 
     <script src="js/board.js" defer></script>
     <script src="js/add-task.js" defer></script>
@@ -54,9 +45,39 @@
                         <img class="search-bar-image" src="assets/img/Vector 3.svg" alt="Search Icon" id="search-icon">
                         <img class="search-bar-image" src="assets/img/search.svg" alt="Search Icon" id="search-icon">
                     </p>
-                    <a href="add-task.html">
+                    <div class="panel-pop">Panel Pop</div>
+                    <div class="alert">
+
+                        <form class="task-form" required>
+                            <div class="form-group-title">
+                                <h4 class="form-title">Title <b>*</b></h4>
+                                <input class="text-input input-title" id="input-title" type="text"
+                                    placeholder="Enter a Title" required>
+                            </div>
+                            <div class="form-group-description">
+                                <h4 class="form-title">Description</h4>
+                                <textarea class="textarea-input input-description" cols="" rows=""
+                                    placeholder="Enter a Description" id="input-description" required></textarea>
+                            </div>
+                            <div class="form-group-assigned">
+                                <p class="form-title">Assigned to</p>
+                                <select class="assigned-to-input" id="assigned-to-select"
+                                    placeholder="Select contacts to assign">
+                                    <option>User 1</option>
+                                    <option>User 2</option>
+                                    <option>User 3</option>
+                                    <option>User 4</option>
+                                </select>
+                            </div>
+                        </form>
+                       
+                        <button class="close-alert">Schließen</button>
+                    </div>
+                    <button class="add-alert-form add-task-btn">Add Task +</button>
+
+                    <!--  <a href="add-task.html">
                         <button class="add-task-btn" id="add-task-btn">Add Task +</button>
-                    </a>
+                    </a> -->
                 </div>
             </div>
             <div class="board-columns" id="board-columns">
@@ -80,7 +101,9 @@
                 <div class="board-list to-do-list" id="todo" ondrop="moveTo(event, 'todo')"
                     ondragover="allowDrop(event)">
                     <h3 id="to-do-list-title">Todo</h3>
+
                 </div>
+                
                 <div class="board-list in-progress-list" id="inProgress" ondrop="moveTo(event, 'inProgress')"
                     ondragover="allowDrop(event)">
                     <h3 id="in-progress-list-title">In Progress</h3>
@@ -96,7 +119,9 @@
                 <div id="detailed-information"></div>
             </div>
         </section>
+        
     </main>
+    <div id="task-list"> Hallo</div>
 </body>
 
 </html>
