@@ -225,3 +225,49 @@ body {
 .drag-area-highlight {
   background-color: rgba(0, 0, 0, 0.2);
 }
+
+
+
+
+
+
+
+
+.panel-pop, .alert {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.panel-pop {
+  top: -100%;
+}
+
+.alert {
+  top: 10%;
+  background-color: #ffcccc;
+}
+
+.wrap-pop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.close-alert {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
