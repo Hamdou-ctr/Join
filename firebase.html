@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Fetcher</title>
+
+    <!-- jQuery einbinden -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .panel-pop, .alert {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .panel-pop {
+            top: -100%;
+        }
+
+        .alert {
+            top: 10%;
+            background-color: #ffcccc;
+        }
+
+        .wrap-pop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .close-alert {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body onload="fetchTasksAndDisplay()">
+    <h1>Firebase File Fetcher</h1>
+    <div id="task-list">Tasks werden geladen...</div>
+    <div id="json-output">JSON Daten werden geladen...</div>
+    <div class="panel-pop">Panel Pop</div>
+    <div class="alert">
+        Alert Box
+        <button class="close-alert">Schließen</button>
+    </div>
+    <button class="add-alert-form">Add Alert</button>
+
+    <script>
+        const BASE_URL = "https://jointest-202a5-default-rtdb.europe-west1.firebasedatabase.app/";
+
+        async function fetchTasksAndDisplay() {
+            try {
+                let tasksData = await fetchTasks();
+                displayTasks(tasksData);
+                displayTasksAsJson(tasksData);
+            } catch (error) {
+                handleFetchError(error);
+            }
+        }
+
+        async function fetchTasks() {
+            let response = await fetch(`${BASE_URL}tasks.json`);
+            if (!response.ok) {
+                throw new Error(`Fehler beim Abrufen der Aufgaben. Status: ${response.status}`);
+            }
+            return await response.json();
+        }
+
+        function handleFetchError(error) {
+            console.error("Fehler beim Laden der Aufgaben:", error);
+            document.getElementById("task-list").innerText = "Fehler beim Laden der Aufgaben.";
+        }
+
+        function displayTasks(tasksData) {
+            try {
+                let taskListDiv = getTaskListDiv();
+                let tasksHtml = generateTasksHtml(tasksData);
+                taskListDiv.innerHTML = tasksHtml;
+            } catch (error) {
+                handleDisplayError(error);
+            }
+        }
+
+        function getTaskListDiv() {
+            let taskListDiv = document.getElementById("task-list");
+            if (!taskListDiv) {
+                throw new Error(`Element mit ID 'task-list' nicht gefunden.`);
+            }
+            return taskListDiv;
+        }
+
+        function generateTasksHtml(tasksData) {
+            let tasksHtml = "<ul>";
+            Object.keys(tasksData).forEach(taskId => {
+                tasksHtml += generateTaskHtml(tasksData[taskId]);
+            });
+            tasksHtml += "</ul>";
+            return tasksHtml;
+        }
+
+        function generateTaskHtml(task) {
+            return `
+                <li>
+                    <button>${task.inputTitle}</button>
+                    <button>${task.assigned}</button>
+                    <button>${task.description}</button>
+                    <button>${task.category}</button>
+                </li>`;
+        }
+
+        function handleDisplayError(error) {
+            console.error("Fehler beim Anzeigen der Aufgaben:", error);
+        }
+
+        // JSON Daten anzeigen
+        function displayTasksAsJson(tasksData) {
+            try {
+                let jsonOutputDiv = getJsonOutputDiv();
+                let jsonData = JSON.stringify(tasksData, null, 2); // Formatiertes JSON
+                jsonOutputDiv.innerHTML = `<pre>${jsonData}</pre>`;
+                console.log(jsonData);
+            } catch (error) {
+                handleJsonDisplayError(error);
+            }
+           
+        }
+
+        function getJsonOutputDiv() {
+            let jsonOutputDiv = document.getElementById("json-output");
+            if (!jsonOutputDiv) {
+                throw new Error(`Element mit ID 'json-output' nicht gefunden.`);
+            }
+            return jsonOutputDiv;
+        }
+
+        function handleJsonDisplayError(error) {
+            console.error("Fehler beim Anzeigen der JSON-Daten:", error);
+            document.getElementById("json-output").innerText = "Fehler beim Laden der JSON-Daten.";
+        }
+
+        // jQuery Click-Ereignisbehandlung für das Hinzufügen eines Alerts
+        $(".add-alert-form").click(function () {
+            $(".panel-pop").animate({
+                "top": "-100%"
+            }, 10).hide();
+            $(".alert").show().animate({
+                "top": "10%"
+            }, 500);
+            $("body").prepend("<div class='wrap-pop'></div>");
+            wrap_pop();
+            return false;
+        });
+
+        // jQuery Click-Ereignisbehandlung für das Schließen des Alerts
+        $(document).on('click', '.close-alert', function() {
+            $(".alert").animate({
+                "top": "-100%"
+            }, 500).hide();
+            $(".wrap-pop").remove();
+        });
+
+        // Beispiel-Definition der Funktion wrap_pop
+        function wrap_pop() {
+            console.log("wrap_pop wurde aufgerufen");
+            // Hier könnte zusätzlicher Code eingefügt werden, um das Popup zu handhaben
+        }
+    </script>
+</body>
+
+</html>
