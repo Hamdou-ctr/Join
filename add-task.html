@@ -8,9 +8,12 @@
     <link rel="shortcut icon" href="assets/img/Logo for Favicon construction.svg" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/add-task.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
     <script defer src="js/add-task.js"></script>
     <script src="js/includehtml.js"></script>
-    <script src="js/board.js"></script>
+    <script defer src="js/board.js"></script>
 </head>
 
 <body class="add-task-body" onload="initAddTask()">
@@ -127,7 +130,10 @@
 
 
 
-
+    <!-- /* async function deleteData(path = "") {
+  let response = await fetch(`${BASE_URL}${path}.json`, { method: "DELETE" });
+  return await response.json();
+} */ -->
 </body>
 
 </html>
