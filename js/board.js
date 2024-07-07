@@ -1,25 +1,18 @@
+
 async function initBoard() {
   includeHTML();
   loadTodoCards();
-  updateHTML();
-  await fetchTasksAndDisplay();
+  
 }
 
 let contacts = [];
 let tasks = [];
 
-let todoCards = [
-  { id: 0, title: "Aufgabenliste", category: "todo" },
-  { id: 1, title: "Im Gange", category: "inProgress" },
-  { id: 2, title: "Wartet auf Feedback", category: "awaitFeedback" },
-  { id: 3, title: "Fertig", category: "done" },
-];
 
-let currentDraggedElement;
-
-
-
-
+function save() {
+  let todoCardsString = JSON.stringify(todoCards);
+  localStorage.setItem("todoCards", todoCardsString);
+}
 
 function updateHTML() {
   renderTodo();
@@ -29,7 +22,7 @@ function updateHTML() {
 }
 
 function renderTodo() {
-  let todo = todoCards.filter((t) => t["category"] == "todo");
+  let todo = todoCards.filter((t) => t["category"] === "todo");
   document.getElementById("todo").innerHTML = "";
 
   for (let i = 0; i < todo.length; i++) {
@@ -39,7 +32,7 @@ function renderTodo() {
 }
 
 function renderInProgress() {
-  let inProgress = todoCards.filter((t) => t["category"] == "inProgress");
+  let inProgress = todoCards.filter((t) => t["category"] === "inProgress");
   document.getElementById("inProgress").innerHTML = "";
 
   for (let i = 0; i < inProgress.length; i++) {
@@ -49,7 +42,7 @@ function renderInProgress() {
 }
 
 function renderAwaitFeedback() {
-  let awaitFeedback = todoCards.filter((t) => t["category"] == "awaitFeedback");
+  let awaitFeedback = todoCards.filter((t) => t["category"] === "awaitFeedback");
   document.getElementById("awaitFeedback").innerHTML = "";
 
   for (let i = 0; i < awaitFeedback.length; i++) {
@@ -59,7 +52,7 @@ function renderAwaitFeedback() {
 }
 
 function renderDone() {
-  let done = todoCards.filter((t) => t["category"] == "done");
+  let done = todoCards.filter((t) => t["category"] === "done");
   document.getElementById("done").innerHTML = "";
 
   for (let i = 0; i < done.length; i++) {
@@ -77,7 +70,6 @@ function renderCardHTML(task, i) {
     <div draggable="true" ondragstart="startDragging(${task.id})" id="smallCard${i}" class="renderCardHTML" onclick="showdetailedInformation(${task.id})">
       <div class="category">
         <h2>${task.category}</h2>
-        <img src="" alt="">
       </div>
       <div class="title">
         <h3>${task.title}</h3>
@@ -100,11 +92,7 @@ function allowDrop(ev) {
   ev.preventDefault();
 }
 
-function moveTo(ev, category) {
-  todoCards[currentDraggedElement]["category"] = category;
-  updateHTML();
-  save(); // Speichern der Änderung nach dem Verschieben
-}
+
 
 function highlight(id) {
   document.getElementById(id).classList.add("drag-area-highlight");
@@ -114,16 +102,7 @@ function removeHighlight(id) {
   document.getElementById(id).classList.remove("drag-area-highlight");
 }
 
-function showdetailedInformation(id) {
-  let element = todoCards.find((t) => t.id === id);
-  if (element) {
-    document.getElementById("detailed-information").style.display = "flex";
-    let content = document.getElementById("detailed-information");
-    content.innerHTML = detailedInformationHTML(element);
-  } else {
-    console.error(`Element with id ${id} not found.`);
-  }
-}
+
 
 function closeCard() {
   document.getElementById("detailed-information").style.display = "none";

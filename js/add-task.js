@@ -1,10 +1,4 @@
-const BASE_URL = "https://jointest-202a5-default-rtdb.europe-west1.firebasedatabase.app/";
 
-const priorityImage = {
-  Urgent: "assets/img/urgent-image-rot.svg",
-  Medium: "assets/img/medium-image-gelbe.svg",
-  Low: "assets/img/low-image-grune.svg",
-};
 
 let allTasks = [];
 
@@ -16,10 +10,7 @@ async function initAddTask() {
       icon.classList.add("selected");
     })
   );
-  loadAllTasks();
-  show();
-  includeHTML();
-  await fetchTasksAndDisplay();
+
 }
 
 
@@ -38,15 +29,7 @@ async function addTask(event) {
     dueDate: document.getElementById("due-date-input").value,
     createdAt: new Date().getTime(),
   };
-  try {
-    let addedTask = await postData("tasks", task);
-    allTasks.push({ ...task, id: addedTask.name });
-    localStorage.setItem("allTasks", JSON.stringify(allTasks));
-    show();
-    clearForm();
-  } catch (error) {
-    console.error("Error adding task:", error);
-  }
+
 }
 
 function getSelectedPriority() {
@@ -57,13 +40,7 @@ function getSelectedPriority() {
   return "Keiner ?";
 }
 
-function show() {
-  let content = document.getElementById("content");
-  content.innerHTML = "";
-  for (let task of allTasks) {
-    content.innerHTML += contentHtml(task);
-  }
-}
+
 
 function loadAllTasks() {
   let allTasksAsString = localStorage.getItem("allTasks");
@@ -81,20 +58,7 @@ function clearForm() {
   ].forEach((id) => (document.getElementById(id).value = ""));
 }
 
-function urgentButtonBackgrundcolor() {
-  let urgenRed = document.getElementById("priority-urgent-red");
-  let urgentWhite = document.getElementById("priority-urgent-white");
 
-  if (urgenRed.classList.contains("visible")) {
-    urgenRed.classList.remove("visible");
-    urgentWhite.classList.add("visible");
-    urgentButtonBackgrundcolorRed();
-  } else {
-    urgenRed.classList.add("visible");
-    urgentWhite.classList.remove("visible");
-    urgentButtonBackgrundcolorWhite();
-  }
-}
 
 function urgentButtonBackgrundcolorRed() {
   document
@@ -108,20 +72,7 @@ function urgentButtonBackgrundcolorWhite() {
     .classList.replace("Urgent-color-red", "priority-div");
 }
 
-function mediumButtonBackgrundcolor() {
-  let mediumYellow = document.getElementById("priority-medium-yellow");
-  let mediumWhite = document.getElementById("priority-medium-white");
 
-  if (mediumYellow.classList.contains("visible")) {
-    mediumYellow.classList.remove("visible");
-    mediumWhite.classList.add("visible");
-    mediumButtonBackgrundcolorYellow();
-  } else {
-    mediumYellow.classList.add("visible");
-    mediumWhite.classList.remove("visible");
-    mediumButtonBackgrundcolorWhite();
-  }
-}
 
 function mediumButtonBackgrundcolorYellow() {
   document
@@ -135,20 +86,7 @@ function mediumButtonBackgrundcolorWhite() {
     .classList.replace("medium-color-yellow", "priority-div");
 }
 
-function lowButtonBackgrundcolor() {
-  let lowgreen = document.getElementById("priority-low-green");
-  let lowWhite = document.getElementById("priority-low-white");
 
-  if (lowgreen.classList.contains("visible")) {
-    lowgreen.classList.remove("visible");
-    lowWhite.classList.add("visible");
-    lowButtonBackgrundcolorgreen();
-  } else {
-    lowgreen.classList.add("visible");
-    lowWhite.classList.remove("visible");
-    lowButtonBackgrundcolorWhite();
-  }
-}
 
 function lowButtonBackgrundcolorgreen() {
   document
@@ -185,17 +123,7 @@ function contentHtml(task) {
   `;
 }
 
-async function handleDelete(taskId) {
-  try {
-    await deleteData(`tasks/${taskId}`);
-    allTasks = allTasks.filter(task => task.id !== taskId);
-    localStorage.setItem("allTasks", JSON.stringify(allTasks));
-    show();
-    console.log("Task deleted successfully");
-  } catch (error) {
-    console.error("Error deleting task:", error);
-  }
-}
+
 
 function createdAtHtml(task) {
   let createdAt = new Date(task.createdAt);
@@ -217,4 +145,3 @@ function createdAtHtml(task) {
     </div>
   `;
 }
-
