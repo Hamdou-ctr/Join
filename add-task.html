@@ -8,12 +8,17 @@
     <link rel="shortcut icon" href="assets/img/Logo for Favicon construction.svg" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/add-task.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
     <script defer src="js/add-task.js"></script>
     <script src="js/includehtml.js"></script>
-    <script src="js/board.js"></script>
+     <script defer src="js/board.js"></script> 
+
 </head>
 
-<body class="add-task-body" onload="initAddTask()">
+<body class="add-task-body">
     <main class="main-container">
         <aside class="sidebar">
             <div class="side-menu" w3-include-html="assets/templates/side_menu.html"></div>
@@ -52,6 +57,9 @@
                                 <option>User 4</option>
                             </select>
                         </div>
+                        <select  name="" id="category-todo">
+                            <option value="">todo</option>
+                        </select>
                     </form>
 
                     <img class="separator" src="assets/img/Vector 4 (1).svg" alt="">
@@ -115,15 +123,17 @@
                     </a>
                 </div>
             </div>
-            <div style="display: flex; justify-content: space-around;">
-                
+             <div style="display: flex; justify-content: space-around;">
+
                 <div id="content" class="content"></div>
 
                 <div id="task-list"> Hallo</div>
-            </div>
-           
+            </div> 
+
         </section>
     </main>
+
+
 
 
 

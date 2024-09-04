@@ -8,24 +8,17 @@
     <link rel="shortcut icon" href="assets/img/Logo for Favicon construction.svg" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/board.css">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
-
     <script src="js/includehtml.js" defer></script>
-
-    <script src="js/board.js" defer></script>
     <script src="js/add-task.js" defer></script>
+    <script src="js/board.js" defer></script>
 </head>
 
-<body onload="initBoard()">
+<body>
     <main>
-
         <aside class="sidebar">
             <div class="side-menu" w3-include-html="assets/templates/side_menu.html"></div>
         </aside>
-
         <section class="board-task" id="board-task">
             <div>
                 <div class="Kanban-overley">
@@ -36,7 +29,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="nav-board d_flex_sb_c" id="nav-board">
                 <h1 id="board-title">Board</h1>
                 <div class="nav-controls" id="nav-controls">
@@ -47,7 +39,6 @@
                     </p>
                     <div class="panel-pop">Panel Pop</div>
                     <div class="alert">
-
                         <form class="task-form" required>
                             <div class="form-group-title">
                                 <h4 class="form-title">Title <b>*</b></h4>
@@ -70,20 +61,15 @@
                                 </select>
                             </div>
                         </form>
-                       
                         <button class="close-alert">Schließen</button>
                     </div>
                     <button class="add-alert-form add-task-btn">Add Task +</button>
-
-                    <!--  <a href="add-task.html">
-                        <button class="add-task-btn" id="add-task-btn">Add Task +</button>
-                    </a> -->
                 </div>
             </div>
             <div class="board-columns" id="board-columns">
                 <div class="column-title to-do" id="to-do-column">
                     <p id="to-do-title">To do</p>
-                    <img src="assets/img/plus button.svg" alt="Add Icon" id="to-do-icon">
+                    <img  src="assets/img/plus button.svg" alt="Add Icon" id="to-do-icon">
                 </div>
                 <div class="column-title in-progress" id="in-progress-column">
                     <p id="in-progress-title">In Progress</p>
@@ -98,28 +84,21 @@
                 </div>
             </div>
             <div class="board-lists" id="task-lists">
-                <div class="board-list to-do-list" id="todo" ondrop="moveTo(event, 'todo')"
-                    ondragover="allowDrop(event)">
+                <div class="board-list to-do-list" id="todo" ondrop="moveTo(event, 'todo')" ondragover="allowDrop(event)">
                     <h3 id="to-do-list-title">Todo</h3>
-
                 </div>
-                
-                <div class="board-list in-progress-list" id="inProgress" ondrop="moveTo(event, 'inProgress')"
-                    ondragover="allowDrop(event)">
+                <div class="board-list in-progress-list" id="inProgress" ondrop="moveTo(event, 'inProgress')" ondragover="allowDrop(event)">
                     <h3 id="in-progress-list-title">In Progress</h3>
                 </div>
-                <div class="board-list awaiting-feedback-list" id="awaitFeedback"
-                    ondrop="moveTo(event, 'awaitFeedback')" ondragover="allowDrop(event)">
+                <div class="board-list awaiting-feedback-list" id="awaitFeedback" ondrop="moveTo(event, 'awaitFeedback')" ondragover="allowDrop(event)">
                     <h3 id="awaiting-feedback-list-title">Awaiting Feedback</h3>
                 </div>
-                <div class="board-list done-list" id="done" ondrop="moveTo(event, 'done')"
-                    ondragover="allowDrop(event)">
+                <div class="board-list done-list" id="done" ondrop="moveTo(event, 'done')" ondragover="allowDrop(event)">
                     <h3 id="done-list-title">Done</h3>
                 </div>
                 <div id="detailed-information"></div>
             </div>
         </section>
-        
     </main>
     <div id="task-list"> Hallo</div>
 </body>

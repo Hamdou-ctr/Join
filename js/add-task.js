@@ -1,4 +1,9 @@
-const BASE_URL = "https://jointest-202a5-default-rtdb.europe-west1.firebasedatabase.app/";
+document.addEventListener("DOMContentLoaded", async () => {
+  await initAddTask();
+});
+
+const BASE_URL =
+  "https://jointest-202a5-default-rtdb.europe-west1.firebasedatabase.app/";
 
 const priorityImage = {
   Urgent: "assets/img/urgent-image-rot.svg",
@@ -19,7 +24,7 @@ async function initAddTask() {
   loadAllTasks();
   show();
   includeHTML();
-  await fetchTasksAndDisplay();
+  //await fetchTasksAndDisplay();
 }
 
 async function postData(path = "", data = {}) {
@@ -58,8 +63,9 @@ async function addTask(event) {
     inputTitle: document.getElementById("input-title").value,
     description: document.getElementById("input-description").value,
     assigned: document.getElementById("assigned-to-select").value,
-    category: document.getElementById("category-select").value,
+    //category: document.getElementById(" category-todo").value,
     subtasks: document.getElementById("subtasks-input").value,
+    createsTasks: document.getElementById("category-select").value,
     priority: getSelectedPriority(),
     priorityImage: priorityImage[getSelectedPriority()] || "",
     dueDate: document.getElementById("due-date-input").value,
@@ -70,7 +76,7 @@ async function addTask(event) {
     allTasks.push({ ...task, id: addedTask.name });
     localStorage.setItem("allTasks", JSON.stringify(allTasks));
     show();
-    clearForm();
+    //clearForm();
   } catch (error) {
     console.error("Error adding task:", error);
   }
@@ -83,6 +89,18 @@ function getSelectedPriority() {
   }
   return "Keiner ?";
 }
+
+/* function show() {
+  let content = document.getElementById("content");
+  if (content) {
+    content.innerHTML = "";
+    for (let task of allTasks) {
+      content.innerHTML += contentHtml(task);
+    }
+  } else {
+    console.error("Element with ID 'content' not found.");
+  }
+} */
 
 function show() {
   let content = document.getElementById("content");
@@ -215,7 +233,7 @@ function contentHtml(task) {
 async function handleDelete(taskId) {
   try {
     await deleteData(`tasks/${taskId}`);
-    allTasks = allTasks.filter(task => task.id !== taskId);
+    allTasks = allTasks.filter((task) => task.id !== taskId);
     localStorage.setItem("allTasks", JSON.stringify(allTasks));
     show();
     console.log("Task deleted successfully");
@@ -245,9 +263,6 @@ function createdAtHtml(task) {
   `;
 }
 
-
-
-
 async function fetchTasksAndDisplay() {
   try {
     let tasksData = await fetchTasks();
@@ -260,14 +275,17 @@ async function fetchTasksAndDisplay() {
 async function fetchTasks() {
   let response = await fetch(`${BASE_URL}tasks.json`);
   if (!response.ok) {
-    throw new Error(`Fehler beim Abrufen der Aufgaben. Status: ${response.status}`);
+    throw new Error(
+      `Fehler beim Abrufen der Aufgaben. Status: ${response.status}`
+    );
   }
   return await response.json();
 }
 
 function handleFetchError(error) {
-  console.error("Fehler beim Laden der Aufgaben:", error);
-  document.getElementById("task-list").innerText = "Fehler beim Laden der Aufgaben.";
+  //console.error("Fehler beim Laden der Aufgaben:", error);
+  document.getElementById("task-list").innerText =
+    "Fehler beim Laden der Aufgaben.";
 }
 
 function displayTasks(tasksData) {
@@ -278,7 +296,7 @@ function displayTasks(tasksData) {
   } catch (error) {
     handleDisplayError(error);
   }
-  console.log(tasksData)
+  //console.log(tasksData)
 }
 
 function getTaskListDiv() {
@@ -291,7 +309,7 @@ function getTaskListDiv() {
 
 function generateTasksHtml(tasksData) {
   let tasksHtml = "<ul>";
-  Object.keys(tasksData).forEach(taskId => {
+  Object.keys(tasksData).forEach((taskId) => {
     tasksHtml += generateTaskHtml(tasksData[taskId]);
   });
   tasksHtml += "</ul>";
@@ -300,14 +318,13 @@ function generateTasksHtml(tasksData) {
 
 function displayTasksAsJson(tasksData) {
   try {
-      let jsonOutputDiv = getJsonOutputDiv();
-      let jsonData = JSON.stringify(tasksData, null, 2); // Formatiertes JSON
-      jsonOutputDiv.innerHTML = `<pre>${jsonData}</pre>`;
-      console.log(jsonData);
+    let jsonOutputDiv = getJsonOutputDiv();
+    let jsonData = JSON.stringify(tasksData, null, 2); // Formatiertes JSON
+    jsonOutputDiv.innerHTML = `<pre>${jsonData}</pre>`;
+    //console.log(jsonData);
   } catch (error) {
-      handleJsonDisplayError(error);
+    handleJsonDisplayError(error);
   }
- 
 }
 
 function generateTaskHtml(task) {
