@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Fetcher</title>
 
-    <!-- jQuery einbinden -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <style>
         ul {
@@ -61,12 +59,6 @@
     <h1>Firebase File Fetcher</h1>
     <div id="task-list">Tasks werden geladen...</div>
     <div id="json-output">JSON Daten werden geladen...</div>
-    <div class="panel-pop">Panel Pop</div>
-    <div class="alert">
-        Alert Box
-        <button class="close-alert">Schließen</button>
-    </div>
-    <button class="add-alert-form">Add Alert</button>
 
     <script>
         const BASE_URL = "https://jointest-202a5-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -160,33 +152,6 @@
         function handleJsonDisplayError(error) {
             console.error("Fehler beim Anzeigen der JSON-Daten:", error);
             document.getElementById("json-output").innerText = "Fehler beim Laden der JSON-Daten.";
-        }
-
-        // jQuery Click-Ereignisbehandlung für das Hinzufügen eines Alerts
-        $(".add-alert-form").click(function () {
-            $(".panel-pop").animate({
-                "top": "-100%"
-            }, 10).hide();
-            $(".alert").show().animate({
-                "top": "10%"
-            }, 500);
-            $("body").prepend("<div class='wrap-pop'></div>");
-            wrap_pop();
-            return false;
-        });
-
-        // jQuery Click-Ereignisbehandlung für das Schließen des Alerts
-        $(document).on('click', '.close-alert', function() {
-            $(".alert").animate({
-                "top": "-100%"
-            }, 500).hide();
-            $(".wrap-pop").remove();
-        });
-
-        // Beispiel-Definition der Funktion wrap_pop
-        function wrap_pop() {
-            console.log("wrap_pop wurde aufgerufen");
-            // Hier könnte zusätzlicher Code eingefügt werden, um das Popup zu handhaben
         }
     </script>
 </body>
